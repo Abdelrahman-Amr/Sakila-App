@@ -1,93 +1,89 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package gov.iti.jets.entity;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-@Table(name = "customer", indexes = {
-        @Index(name = "idx_last_name", columnList = "last_name"),
-        @Index(name = "idx_fk_store_id", columnList = "store_id"),
-        @Index(name = "idx_fk_address_id", columnList = "address_id")
-})
+
+/**
+ *
+ * @author Abdolrahman
+ */
 @Entity
-public class Customer {
+@Table(name = "customer")
+@NamedQueries({
+    @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c"),
+    @NamedQuery(name = "Customer.findByCustomerId", query = "SELECT c FROM Customer c WHERE c.customerId = :customerId"),
+    @NamedQuery(name = "Customer.findByFirstName", query = "SELECT c FROM Customer c WHERE c.firstName = :firstName"),
+    @NamedQuery(name = "Customer.findByLastName", query = "SELECT c FROM Customer c WHERE c.lastName = :lastName"),
+    @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email"),
+    @NamedQuery(name = "Customer.findByActive", query = "SELECT c FROM Customer c WHERE c.active = :active"),
+    @NamedQuery(name = "Customer.findByCreateDate", query = "SELECT c FROM Customer c WHERE c.createDate = :createDate"),
+    @NamedQuery(name = "Customer.findByLastUpdate", query = "SELECT c FROM Customer c WHERE c.lastUpdate = :lastUpdate")})
+public class Customer implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_id", nullable = false)
-    private Integer id;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "store_id", nullable = false)
-    private Store store;
-
-    @Column(name = "first_name", nullable = false, length = 45)
+    @Basic(optional = false)
+    @Column(name = "customer_id")
+    private Short customerId;
+    @Basic(optional = false)
+    @Column(name = "first_name")
     private String firstName;
-
-    @Column(name = "last_name", nullable = false, length = 45)
+    @Basic(optional = false)
+    @Column(name = "last_name")
     private String lastName;
-
-    @Column(name = "email", length = 50)
+    @Column(name = "email")
     private String email;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "address_id", nullable = false)
-    private Address address;
-
-    @Column(name = "active", nullable = false)
-    private Boolean active = false;
-
-    @Column(name = "create_date", nullable = false)
+    @Basic(optional = false)
+    @Column(name = "active")
+    private boolean active;
+    @Basic(optional = false)
+    @Column(name = "create_date")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
-
     @Column(name = "last_update")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
+    private List<Rental> rentalList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
+    private List<Payment> paymentList;
+    @JoinColumn(name = "address_id", referencedColumnName = "address_id")
+    @ManyToOne(optional = false)
+    private Address addressId;
+    @JoinColumn(name = "store_id", referencedColumnName = "store_id")
+    @ManyToOne(optional = false)
+    private Store storeId;
 
-    public Date getLastUpdate() {
-        return lastUpdate;
+    public Customer() {
     }
 
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
+    public Customer(Short customerId) {
+        this.customerId = customerId;
     }
 
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
+    public Customer(Short customerId, String firstName, String lastName, boolean active, Date createDate) {
+        this.customerId = customerId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.active = active;
         this.createDate = createDate;
     }
 
-    public Boolean getActive() {
-        return active;
+    public Short getCustomerId() {
+        return customerId;
     }
 
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setCustomerId(Short customerId) {
+        this.customerId = customerId;
     }
 
     public String getFirstName() {
@@ -98,19 +94,101 @@ public class Customer {
         this.firstName = firstName;
     }
 
-    public Store getStore() {
-        return store;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setStore(Store store) {
-        this.store = store;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public Integer getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+    public boolean getActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    public List<Rental> getRentalList() {
+        return rentalList;
+    }
+
+    public void setRentalList(List<Rental> rentalList) {
+        this.rentalList = rentalList;
+    }
+
+    public List<Payment> getPaymentList() {
+        return paymentList;
+    }
+
+    public void setPaymentList(List<Payment> paymentList) {
+        this.paymentList = paymentList;
+    }
+
+    public Address getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Address addressId) {
+        this.addressId = addressId;
+    }
+
+    public Store getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(Store storeId) {
+        this.storeId = storeId;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (customerId != null ? customerId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Customer)) {
+            return false;
+        }
+        Customer other = (Customer) object;
+        if ((this.customerId == null && other.customerId != null) || (this.customerId != null && !this.customerId.equals(other.customerId))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "entity.Customer[ customerId=" + customerId + " ]";
+    }
+    
 }

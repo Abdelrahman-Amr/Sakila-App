@@ -1,30 +1,63 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package gov.iti.jets.entity;
-
+import gov.iti.jets.entity.City;
 import jakarta.persistence.*;
 
-import java.time.Instant;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-@Table(name = "country")
+/**
+ *
+ * @author Abdolrahman
+ */
 @Entity
-public class Country {
+@Table(name = "country")
+@NamedQueries({
+    @NamedQuery(name = "Country.findAll", query = "SELECT c FROM Country c"),
+    @NamedQuery(name = "Country.findByCountryId", query = "SELECT c FROM Country c WHERE c.countryId = :countryId"),
+    @NamedQuery(name = "Country.findByCountry", query = "SELECT c FROM Country c WHERE c.country = :country"),
+    @NamedQuery(name = "Country.findByLastUpdate", query = "SELECT c FROM Country c WHERE c.lastUpdate = :lastUpdate")})
+public class Country implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "country_id", nullable = false)
-    private Integer id;
-
-    @Column(name = "country", nullable = false, length = 50)
+    @Basic(optional = false)
+    @Column(name = "country_id")
+    private Short countryId;
+    @Basic(optional = false)
+    @Column(name = "country")
     private String country;
-
-    @Column(name = "last_update", nullable = false)
+    @Basic(optional = false)
+    @Column(name = "last_update")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "countryId")
+    private List<City> cityList;
 
-    public Date getLastUpdate() {
-        return lastUpdate;
+    public Country() {
     }
 
-    public void setLastUpdate(Date lastUpdate) {
+    public Country(Short countryId) {
+        this.countryId = countryId;
+    }
+
+    public Country(Short countryId, String country, Date lastUpdate) {
+        this.countryId = countryId;
+        this.country = country;
         this.lastUpdate = lastUpdate;
+    }
+
+    public Short getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(Short countryId) {
+        this.countryId = countryId;
     }
 
     public String getCountry() {
@@ -35,11 +68,45 @@ public class Country {
         this.country = country;
     }
 
-    public Integer getId() {
-        return id;
+    public Date getLastUpdate() {
+        return lastUpdate;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
+
+    public List<City> getCityList() {
+        return cityList;
+    }
+
+    public void setCityList(List<City> cityList) {
+        this.cityList = cityList;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (countryId != null ? countryId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Country)) {
+            return false;
+        }
+        Country other = (Country) object;
+        if ((this.countryId == null && other.countryId != null) || (this.countryId != null && !this.countryId.equals(other.countryId))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "entity.Country[ countryId=" + countryId + " ]";
+    }
+    
 }

@@ -1,30 +1,65 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package gov.iti.jets.entity;
-
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-@Table(name = "inventory", indexes = {
-        @Index(name = "idx_fk_film_id", columnList = "film_id"),
-        @Index(name = "idx_store_id_film_id", columnList = "store_id, film_id")
-})
+
+/**
+ *
+ * @author Abdolrahman
+ */
 @Entity
-public class Inventory {
+@Table(name = "inventory")
+@NamedQueries({
+    @NamedQuery(name = "Inventory.findAll", query = "SELECT i FROM Inventory i"),
+    @NamedQuery(name = "Inventory.findByInventoryId", query = "SELECT i FROM Inventory i WHERE i.inventoryId = :inventoryId"),
+    @NamedQuery(name = "Inventory.findByLastUpdate", query = "SELECT i FROM Inventory i WHERE i.lastUpdate = :lastUpdate")})
+public class Inventory implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "inventory_id", nullable = false)
-    private Integer id;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "film_id", nullable = false)
-    private Film film;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "store_id", nullable = false)
-    private Store store;
-
-    @Column(name = "last_update", nullable = false)
+    @Basic(optional = false)
+    @Column(name = "inventory_id")
+    private Integer inventoryId;
+    @Basic(optional = false)
+    @Column(name = "last_update")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
+    @JoinColumn(name = "film_id", referencedColumnName = "film_id")
+    @ManyToOne(optional = false)
+    private Film filmId;
+    @JoinColumn(name = "store_id", referencedColumnName = "store_id")
+    @ManyToOne(optional = false)
+    private Store storeId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "inventoryId")
+    private List<Rental> rentalList;
+
+    public Inventory() {
+    }
+
+    public Inventory(Integer inventoryId) {
+        this.inventoryId = inventoryId;
+    }
+
+    public Inventory(Integer inventoryId, Date lastUpdate) {
+        this.inventoryId = inventoryId;
+        this.lastUpdate = lastUpdate;
+    }
+
+    public Integer getInventoryId() {
+        return inventoryId;
+    }
+
+    public void setInventoryId(Integer inventoryId) {
+        this.inventoryId = inventoryId;
+    }
 
     public Date getLastUpdate() {
         return lastUpdate;
@@ -34,27 +69,53 @@ public class Inventory {
         this.lastUpdate = lastUpdate;
     }
 
-    public Store getStore() {
-        return store;
+    public Film getFilmId() {
+        return filmId;
     }
 
-    public void setStore(Store store) {
-        this.store = store;
+    public void setFilmId(Film filmId) {
+        this.filmId = filmId;
     }
 
-    public Film getFilm() {
-        return film;
+    public Store getStoreId() {
+        return storeId;
     }
 
-    public void setFilm(Film film) {
-        this.film = film;
+    public void setStoreId(Store storeId) {
+        this.storeId = storeId;
     }
 
-    public Integer getId() {
-        return id;
+    public List<Rental> getRentalList() {
+        return rentalList;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setRentalList(List<Rental> rentalList) {
+        this.rentalList = rentalList;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (inventoryId != null ? inventoryId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Inventory)) {
+            return false;
+        }
+        Inventory other = (Inventory) object;
+        if ((this.inventoryId == null && other.inventoryId != null) || (this.inventoryId != null && !this.inventoryId.equals(other.inventoryId))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "entity.Inventory[ inventoryId=" + inventoryId + " ]";
+    }
+    
 }

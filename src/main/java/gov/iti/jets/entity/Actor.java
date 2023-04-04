@@ -1,49 +1,68 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package gov.iti.jets.entity;
 
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 import jakarta.persistence.*;
 
-import java.time.Instant;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-@Table(name = "actor", indexes = {
-        @Index(name = "idx_actor_last_name", columnList = "last_name")
-})
+/**
+ *
+ * @author Abdolrahman
+ */
 @Entity
-public class Actor {
+@Table(name = "actor")
+@NamedQueries({
+    @NamedQuery(name = "Actor.findAll", query = "SELECT a FROM Actor a"),
+    @NamedQuery(name = "Actor.findByActorId", query = "SELECT a FROM Actor a WHERE a.actorId = :actorId"),
+    @NamedQuery(name = "Actor.findByFirstName", query = "SELECT a FROM Actor a WHERE a.firstName = :firstName"),
+    @NamedQuery(name = "Actor.findByLastName", query = "SELECT a FROM Actor a WHERE a.lastName = :lastName"),
+    @NamedQuery(name = "Actor.findByLastUpdate", query = "SELECT a FROM Actor a WHERE a.lastUpdate = :lastUpdate")})
+public class Actor implements Serializable, BaseEntity {
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "actor_id", nullable = false)
-    private Integer id;
-
-    @Column(name = "first_name", nullable = false, length = 45)
+    @Basic(optional = false)
+    @Column(name = "actor_id")
+    private Integer actorId;
+    @Basic(optional = false)
+    @Column(name = "first_name")
     private String firstName;
-
-    @Column(name = "last_name", nullable = false, length = 45)
+    @Basic(optional = false)
+    @Column(name = "last_name")
     private String lastName;
-
-    @Column(name = "last_update", nullable = false)
+    @Basic(optional = false)
+    @Column(name = "last_update")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actor")
+    private List<FilmActor> filmActorList;
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="actor")
-    private Set<FilmActor> filmActors = new HashSet();
-
-
-    public Date getLastUpdate() {
-        return lastUpdate;
+    public Actor() {
     }
 
-    public void setLastUpdate(Date lastUpdate) {
+    public Actor(Integer actorId) {
+        this.actorId = actorId;
+    }
+
+    public Actor(Integer actorId, String firstName, String lastName, Date lastUpdate) {
+        this.actorId = actorId;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.lastUpdate = lastUpdate;
     }
 
-    public String getLastName() {
-        return lastName;
+    public Integer getActorId() {
+        return actorId;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setActorId(Integer actorId) {
+        this.actorId = actorId;
     }
 
     public String getFirstName() {
@@ -54,11 +73,53 @@ public class Actor {
         this.firstName = firstName;
     }
 
-    public Integer getId() {
-        return id;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
+
+    public Date getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    public List<FilmActor> getFilmActorList() {
+        return filmActorList;
+    }
+
+    public void setFilmActorList(List<FilmActor> filmActorList) {
+        this.filmActorList = filmActorList;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (actorId != null ? actorId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Actor)) {
+            return false;
+        }
+        Actor other = (Actor) object;
+        if ((this.actorId == null && other.actorId != null) || (this.actorId != null && !this.actorId.equals(other.actorId))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "entity.Actor[ actorId=" + actorId + " ]";
+    }
+    
 }

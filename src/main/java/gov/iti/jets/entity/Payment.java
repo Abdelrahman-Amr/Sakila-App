@@ -1,56 +1,75 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package gov.iti.jets.entity;
+import gov.iti.jets.entity.Customer;
 
-import jakarta.persistence.*;
-
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import jakarta.persistence.*;
 
-@Table(name = "payment", indexes = {
-        @Index(name = "idx_fk_staff_id", columnList = "staff_id"),
-        @Index(name = "idx_fk_customer_id", columnList = "customer_id")
-})
+/**
+ *
+ * @author Abdolrahman
+ */
 @Entity
-public class Payment {
+@Table(name = "payment")
+@NamedQueries({
+    @NamedQuery(name = "Payment.findAll", query = "SELECT p FROM Payment p"),
+    @NamedQuery(name = "Payment.findByPaymentId", query = "SELECT p FROM Payment p WHERE p.paymentId = :paymentId"),
+    @NamedQuery(name = "Payment.findByAmount", query = "SELECT p FROM Payment p WHERE p.amount = :amount"),
+    @NamedQuery(name = "Payment.findByPaymentDate", query = "SELECT p FROM Payment p WHERE p.paymentDate = :paymentDate"),
+    @NamedQuery(name = "Payment.findByLastUpdate", query = "SELECT p FROM Payment p WHERE p.lastUpdate = :lastUpdate")})
+public class Payment implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "payment_id", nullable = false)
-    private Integer id;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customer;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "staff_id", nullable = false)
-    private Staff staff;
-
-    @ManyToOne
-    @JoinColumn(name = "rental_id")
-    private Rental rental;
-
-    @Column(name = "amount", nullable = false, precision = 5, scale = 2)
+    @Basic(optional = false)
+    @Column(name = "payment_id")
+    private Short paymentId;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
+    @Column(name = "amount")
     private BigDecimal amount;
-
-    @Column(name = "payment_date", nullable = false)
+    @Basic(optional = false)
+    @Column(name = "payment_date")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date paymentDate;
-
     @Column(name = "last_update")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
+    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
+    @ManyToOne(optional = false)
+    private Customer customerId;
+    @JoinColumn(name = "rental_id", referencedColumnName = "rental_id")
+    @ManyToOne
+    private Rental rentalId;
+    @JoinColumn(name = "staff_id", referencedColumnName = "staff_id")
+    @ManyToOne(optional = false)
+    private Staff staffId;
 
-    public Date getLastUpdate() {
-        return lastUpdate;
+    public Payment() {
     }
 
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
+    public Payment(Short paymentId) {
+        this.paymentId = paymentId;
     }
 
-    public Date getPaymentDate() {
-        return paymentDate;
-    }
-
-    public void setPaymentDate(Date paymentDate) {
+    public Payment(Short paymentId, BigDecimal amount, Date paymentDate) {
+        this.paymentId = paymentId;
+        this.amount = amount;
         this.paymentDate = paymentDate;
+    }
+
+    public Short getPaymentId() {
+        return paymentId;
+    }
+
+    public void setPaymentId(Short paymentId) {
+        this.paymentId = paymentId;
     }
 
     public BigDecimal getAmount() {
@@ -61,35 +80,69 @@ public class Payment {
         this.amount = amount;
     }
 
-    public Rental getRental() {
-        return rental;
+    public Date getPaymentDate() {
+        return paymentDate;
     }
 
-    public void setRental(Rental rental) {
-        this.rental = rental;
+    public void setPaymentDate(Date paymentDate) {
+        this.paymentDate = paymentDate;
     }
 
-    public Staff getStaff() {
-        return staff;
+    public Date getLastUpdate() {
+        return lastUpdate;
     }
 
-    public void setStaff(Staff staff) {
-        this.staff = staff;
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Customer getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerId(Customer customerId) {
+        this.customerId = customerId;
     }
 
-    public Integer getId() {
-        return id;
+    public Rental getRentalId() {
+        return rentalId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setRentalId(Rental rentalId) {
+        this.rentalId = rentalId;
     }
+
+    public Staff getStaffId() {
+        return staffId;
+    }
+
+    public void setStaffId(Staff staffId) {
+        this.staffId = staffId;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (paymentId != null ? paymentId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Payment)) {
+            return false;
+        }
+        Payment other = (Payment) object;
+        if ((this.paymentId == null && other.paymentId != null) || (this.paymentId != null && !this.paymentId.equals(other.paymentId))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "entity.Payment[ paymentId=" + paymentId + " ]";
+    }
+    
 }

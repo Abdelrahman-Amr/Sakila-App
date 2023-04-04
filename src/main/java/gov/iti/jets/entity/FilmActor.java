@@ -1,29 +1,66 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package gov.iti.jets.entity;
-
+import gov.iti.jets.entity.Actor;
+import gov.iti.jets.entity.Film;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
-@Table(name = "film_actor", indexes = {
-        @Index(name = "idx_fk_film_id", columnList = "film_id")
-})
-@Entity
-public class FilmActor {
-    @EmbeddedId
-    private FilmActorId id;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="film_id")
-    @MapsId("filmId")
+/**
+ *
+ * @author Abdolrahman
+ */
+@Entity
+@Table(name = "film_actor")
+@NamedQueries({
+    @NamedQuery(name = "FilmActor.findAll", query = "SELECT f FROM FilmActor f"),
+    @NamedQuery(name = "FilmActor.findByActorId", query = "SELECT f FROM FilmActor f WHERE f.filmActorPK.actorId = :actorId"),
+    @NamedQuery(name = "FilmActor.findByFilmId", query = "SELECT f FROM FilmActor f WHERE f.filmActorPK.filmId = :filmId"),
+    @NamedQuery(name = "FilmActor.findByLastUpdate", query = "SELECT f FROM FilmActor f WHERE f.lastUpdate = :lastUpdate")})
+public class FilmActor implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @EmbeddedId
+    protected FilmActorPK filmActorPK;
+    @Basic(optional = false)
+    @Column(name = "last_update")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastUpdate;
+    @JoinColumn(name = "actor_id", referencedColumnName = "actor_id", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Actor actor;
+    @JoinColumn(name = "film_id", referencedColumnName = "film_id", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
     private Film film;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="actor_id")
-    @MapsId("actorId")
-    private Actor actor;
+    public FilmActor() {
+    }
 
-    @Column(name = "last_update", nullable = false)
-    private Date lastUpdate;
+    public FilmActor(FilmActorPK filmActorPK) {
+        this.filmActorPK = filmActorPK;
+    }
+
+    public FilmActor(FilmActorPK filmActorPK, Date lastUpdate) {
+        this.filmActorPK = filmActorPK;
+        this.lastUpdate = lastUpdate;
+    }
+
+    public FilmActor(short actorId, short filmId) {
+        this.filmActorPK = new FilmActorPK(actorId, filmId);
+    }
+
+    public FilmActorPK getFilmActorPK() {
+        return filmActorPK;
+    }
+
+    public void setFilmActorPK(FilmActorPK filmActorPK) {
+        this.filmActorPK = filmActorPK;
+    }
 
     public Date getLastUpdate() {
         return lastUpdate;
@@ -33,12 +70,12 @@ public class FilmActor {
         this.lastUpdate = lastUpdate;
     }
 
-    public FilmActorId getId() {
-        return id;
+    public Actor getActor() {
+        return actor;
     }
 
-    public void setId(FilmActorId id) {
-        this.id = id;
+    public void setActor(Actor actor) {
+        this.actor = actor;
     }
 
     public Film getFilm() {
@@ -49,11 +86,29 @@ public class FilmActor {
         this.film = film;
     }
 
-    public Actor getActor() {
-        return actor;
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (filmActorPK != null ? filmActorPK.hashCode() : 0);
+        return hash;
     }
 
-    public void setActor(Actor actor) {
-        this.actor = actor;
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof FilmActor)) {
+            return false;
+        }
+        FilmActor other = (FilmActor) object;
+        if ((this.filmActorPK == null && other.filmActorPK != null) || (this.filmActorPK != null && !this.filmActorPK.equals(other.filmActorPK))) {
+            return false;
+        }
+        return true;
     }
+
+    @Override
+    public String toString() {
+        return "entity.FilmActor[ filmActorPK=" + filmActorPK + " ]";
+    }
+    
 }

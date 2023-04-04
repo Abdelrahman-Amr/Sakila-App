@@ -1,36 +1,62 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package gov.iti.jets.entity;
-
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
-@Table(name = "category")
+/**
+ *
+ * @author Abdolrahman
+ */
 @Entity
-public class Category {
+@Table(name = "category")
+@NamedQueries({
+    @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
+    @NamedQuery(name = "Category.findByCategoryId", query = "SELECT c FROM Category c WHERE c.categoryId = :categoryId"),
+    @NamedQuery(name = "Category.findByName", query = "SELECT c FROM Category c WHERE c.name = :name"),
+    @NamedQuery(name = "Category.findByLastUpdate", query = "SELECT c FROM Category c WHERE c.lastUpdate = :lastUpdate")})
+public class Category implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id", nullable = false)
-    private Integer id;
-
-    @Column(name = "name", nullable = false, length = 25)
+    @Basic(optional = false)
+    @Column(name = "category_id")
+    private Short categoryId;
+    @Basic(optional = false)
+    @Column(name = "name")
     private String name;
-
-    @Column(name = "last_update", nullable = false)
+    @Basic(optional = false)
+    @Column(name = "last_update")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    private List<FilmCategory> filmCategoryList;
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="category")
-    private Set<FilmCategory> filmCategories = new HashSet();
-
-
-
-    public Date getLastUpdate() {
-        return lastUpdate;
+    public Category() {
     }
 
-    public void setLastUpdate(Date lastUpdate) {
+    public Category(Short categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public Category(Short categoryId, String name, Date lastUpdate) {
+        this.categoryId = categoryId;
+        this.name = name;
         this.lastUpdate = lastUpdate;
+    }
+
+    public Short getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Short categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getName() {
@@ -41,19 +67,45 @@ public class Category {
         this.name = name;
     }
 
-    public Integer getId() {
-        return id;
+    public Date getLastUpdate() {
+        return lastUpdate;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
-    public Set<FilmCategory> getFilmCategories() {
-        return filmCategories;
+    public List<FilmCategory> getFilmCategoryList() {
+        return filmCategoryList;
     }
 
-    public void setFilmCategories(Set<FilmCategory> filmCategories) {
-        this.filmCategories = filmCategories;
+    public void setFilmCategoryList(List<FilmCategory> filmCategoryList) {
+        this.filmCategoryList = filmCategoryList;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (categoryId != null ? categoryId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Category)) {
+            return false;
+        }
+        Category other = (Category) object;
+        if ((this.categoryId == null && other.categoryId != null) || (this.categoryId != null && !this.categoryId.equals(other.categoryId))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "entity.Category[ categoryId=" + categoryId + " ]";
+    }
+    
 }
