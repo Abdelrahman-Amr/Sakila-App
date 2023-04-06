@@ -26,12 +26,19 @@
             <param-name>jersey.config.server.provider.packages</param-name>
             <param-value>gov.iti.jets.web.controller</param-value>
         </init-param>
-<!--        <load-on-startup>1</load-on-startup>-->
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>Jersey Web Application</servlet-name>
         <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
+
+    <!--    //Listeners-->
+    <listener>
+        <listener-class>
+            gov.iti.jets.listener.RequestListener
+        </listener-class>
+    </listener>
 
 </web-app>
 

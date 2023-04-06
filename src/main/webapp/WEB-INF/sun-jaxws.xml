@@ -1,9 +1,7 @@
 
 <endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">
 <endpoint
-name="BankWebService"
-implementation="gov.iti.jets.web.services.ActorWS"
-url-pattern="/ws/actor"/>
-
-
+    name="ActorWebService"
+    implementation="gov.iti.jets.web.services.ActorWS"
+    url-pattern="/ws/actor"/>
 </endpoints>

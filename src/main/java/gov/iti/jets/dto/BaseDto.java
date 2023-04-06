@@ -1,4 +1,4 @@
-package gov.iti.jets.web.dto;
+package gov.iti.jets.dto;
 
 public interface BaseDto {
 }

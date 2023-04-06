@@ -2,22 +2,22 @@ package gov.iti.jets.service;
 
 import gov.iti.jets.entity.Actor;
 import gov.iti.jets.mapper.ActorMapper;
-import gov.iti.jets.repository.ActorRepositoryImpl;
-import gov.iti.jets.web.DBFactory;
-import gov.iti.jets.web.dto.ActorDto;
-import jakarta.jws.WebParam;
-import jakarta.jws.WebResult;
+import gov.iti.jets.persistence.repository.ActorRepositoryImpl;
+import gov.iti.jets.persistence.DBFactory;
+import gov.iti.jets.dto.ActorDto;
 import jakarta.persistence.EntityManager;
+import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
 public class ActorService {
 
     private static  volatile ActorService actorService;
+    private  ActorMapper actorMapper;
 
     private ActorService()
     {
-
+        actorMapper =  Mappers.getMapper(ActorMapper.class);
     }
     public static ActorService getInstance()
     {
@@ -36,20 +36,15 @@ public class ActorService {
 
     public List<ActorDto> findAllActors()
     {
-        EntityManager entityManager = DBFactory.getInstance().createEntityManager();
         ActorRepositoryImpl actorRepository = new ActorRepositoryImpl();
-        ActorMapper actorMapper = new ActorMapper();
-        List<Actor> actors = actorRepository.findAllActors(entityManager);
-        entityManager.close();
+        List<Actor> actors = actorRepository.findAll();
         return  actorMapper.toDTOs(actors);
     }
 
     public ActorDto findActorById( int id)
     {
-        EntityManager entityManager = DBFactory.getInstance().createEntityManager();
-        ActorMapper actorMapper = new ActorMapper();
         ActorRepositoryImpl actorRepository = new ActorRepositoryImpl();
-        Actor actor =  actorRepository.findActorById(entityManager, id);
-        return actorMapper.toDTO(actor);
+        Actor actor =  actorRepository.findById( id);
+        return actorMapper.toDto(actor);
     }
 }

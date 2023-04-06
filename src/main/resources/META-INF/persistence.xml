@@ -12,27 +12,15 @@
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.password" value="springstudent"/>
 
-<!--            <property name="jakarta.persistence.lock.timeout" value="100"/>-->
-<!--            <property name="jakarta.persistence.query.timeout" value="100"/>-->
-
-            <!--            <property name="jakarta.persistence.validation.group.pre-persist"-->
-            <!--                value="jakarta.validation.groups.MyPersistValidation" />-->
-            <!--            <property name="jakarta.persistence.validation.group.pre-update"-->
-            <!--                value="jakarta.validation.groups.MyUpdateValidation" />-->
-            <!--            <property name="jakarta.persistence.validation.group.pre-remove"-->
-            <!--                value="jakarta.validation.groups.MyRemovetValidation" />-->
-
             <property name="show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
 
 
-<!--            <property name="hibernate.hikari.minimumIdle" value="5"/>-->
-<!--            <property name="hibernate.hikari.maximumPoolSize" value="10"/>-->
-<!--            <property name="hibernate.hikari.idleTimeout" value="30000"/>-->
-<!--            <property name="hibernate.connection.provider_class"-->
-<!--                      value="com.zaxxer.hikari.hibernate.HikariConnectionProvider"/>-->
-
-<!--                       <property name="hibernate.hbm2ddl.auto" value="create"/>-->
+            <property name="hibernate.hikari.minimumIdle" value="5"/>
+            <property name="hibernate.hikari.maximumPoolSize" value="20"/>
+            <property name="hibernate.hikari.idleTimeout" value="30000"/>
+            <property name="hibernate.connection.provider_class"
+                      value="com.zaxxer.hikari.hibernate.HikariConnectionProvider"/>
 
         </properties>
     </persistence-unit>
