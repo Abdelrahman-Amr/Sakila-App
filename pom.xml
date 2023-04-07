@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>gov.iti.jets</groupId>
-  <artifactId>sakila</artifactId>
+  <artifactId>sakila-soap</artifactId>
   <version>1.0.0</version>
   <packaging>war</packaging>
 
-  <name>sakila</name>
+  <name>sakila-soap</name>
   <!-- FIXME change it to the project's website -->
   <!-- <url>http://www.example.com</url> -->
 
@@ -17,42 +17,10 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
-    <jersey.version>3.1.1</jersey.version>
   </properties>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.glassfish.jersey</groupId>
-        <artifactId>jersey-bom</artifactId>
-        <version>${jersey.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 
-
-  <dependencies>
-    <dependency>
-      <groupId>org.glassfish.jersey.containers</groupId>
-      <artifactId>jersey-container-servlet</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.glassfish.jersey.inject</groupId>
-      <artifactId>jersey-hk2</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.glassfish.jersey.media</groupId>
-      <artifactId>jersey-media-json-binding</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.glassfish.jersey.media</groupId>
-      <artifactId>jersey-media-jaxb</artifactId>
-    </dependency>
-
+<dependencies>
     <dependency>
       <groupId>jakarta.platform</groupId>
       <artifactId>jakarta.jakartaee-api</artifactId>
@@ -134,7 +102,9 @@
       <version>8.0</version>
       <scope>provided</scope>
     </dependency>
+
   </dependencies>
+
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
@@ -258,7 +228,7 @@
             <username>admin</username>
             <password>admin</password>
             <url>http://localhost:9090/manager/text</url>
-            <path>/sakila</path>
+            <path>/sakila-soap</path>
           </configuration>
         </plugin>
       </plugins>

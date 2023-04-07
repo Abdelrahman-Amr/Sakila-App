@@ -2,6 +2,6 @@
 <endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">
 <endpoint
     name="ActorWebService"
-    implementation="gov.iti.jets.web.services.ActorWS"
+    implementation="gov.iti.jets.webService.ActorWS"
     url-pattern="/ws/actor"/>
 </endpoints>

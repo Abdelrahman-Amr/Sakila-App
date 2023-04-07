@@ -1,4 +1,4 @@
-package gov.iti.jets.web.services;
+package gov.iti.jets.webService;
 
 import gov.iti.jets.service.ActorService;
 import gov.iti.jets.dto.ActorDto;
