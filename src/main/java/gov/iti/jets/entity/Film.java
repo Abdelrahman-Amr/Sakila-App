@@ -28,7 +28,7 @@ import java.util.List;
     @NamedQuery(name = "Film.findByRating", query = "SELECT f FROM Film f WHERE f.rating = :rating"),
     @NamedQuery(name = "Film.findBySpecialFeatures", query = "SELECT f FROM Film f WHERE f.specialFeatures = :specialFeatures"),
     @NamedQuery(name = "Film.findByLastUpdate", query = "SELECT f FROM Film f WHERE f.lastUpdate = :lastUpdate")})
-public class Film implements Serializable {
+public class Film implements Serializable, BaseEntity {
 
     private static final long serialVersionUID = 1L;
     @Id

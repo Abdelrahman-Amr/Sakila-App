@@ -1,16 +1,12 @@
 package gov.iti.jets.mapper;
 
-import gov.iti.jets.entity.Film;
 import gov.iti.jets.dto.FilmDto;
-import org.mapstruct.*;
+import gov.iti.jets.entity.Film;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.ReportingPolicy;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI)
-public interface FilmMapper {
-    Film toEntity(FilmDto filmDto);
+public interface FilmMapper extends BaseMapper<Film , FilmDto>{
 
-    FilmDto toDto(Film film);
-
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Film partialUpdate(FilmDto filmDto, @MappingTarget Film film);
 }

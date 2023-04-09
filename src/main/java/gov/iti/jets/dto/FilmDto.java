@@ -1,8 +1,8 @@
 package gov.iti.jets.dto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -10,16 +10,17 @@ import java.util.Date;
  * A DTO for the {@link gov.iti.jets.entity.Film} entity
  */
 @Data
-public class FilmDto implements Serializable {
-    private final Short filmId;
-    private final String title;
-    private final String description;
-    private final Date releaseYear;
-    private final short rentalDuration;
-    private final BigDecimal rentalRate;
-    private final Short length;
-    private final BigDecimal replacementCost;
-    private final String rating;
-    private final String specialFeatures;
-    private final Date lastUpdate;
+@NoArgsConstructor
+public class FilmDto implements BaseDto {
+    private  Short filmId;
+    private  String title;
+    private  String description;
+    private  Date releaseYear;
+    private  Short rentalDuration;
+    private  BigDecimal rentalRate;
+    private  Short length;
+    private  BigDecimal replacementCost;
+    private  String rating;
+    private  String specialFeatures;
+    private  Date lastUpdate;
 }

@@ -3,5 +3,15 @@
 <endpoint
     name="ActorWebService"
     implementation="gov.iti.jets.webService.ActorWS"
-    url-pattern="/ws/actor"/>
+    url-pattern="/ws/actors"/>
+
+    <endpoint
+            name="FilmWebService"
+            implementation="gov.iti.jets.webService.FilmWS"
+            url-pattern="/ws/films"/>
+
+    <endpoint
+            name="LanguageWebService"
+            implementation="gov.iti.jets.webService.LanguageWS"
+            url-pattern="/ws/languages"/>
 </endpoints>

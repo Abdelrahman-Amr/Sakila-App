@@ -2,15 +2,11 @@ package gov.iti.jets.mapper;
 
 import gov.iti.jets.dto.LanguageDto;
 import gov.iti.jets.entity.Language;
-import org.mapstruct.*;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.ReportingPolicy;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI)
-public interface LanguageMapper {
-    Language toEntity(LanguageDto languageDto);
+public interface LanguageMapper  extends BaseMapper<Language, LanguageDto>{
 
-    LanguageDto toDto(Language language);
-
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Language partialUpdate(LanguageDto languageDto, @MappingTarget Language language);
 }

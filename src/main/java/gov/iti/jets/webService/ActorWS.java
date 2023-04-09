@@ -5,6 +5,9 @@ import gov.iti.jets.dto.ActorDto;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebResult;
 import jakarta.jws.WebService;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
@@ -19,14 +22,26 @@ public class ActorWS {
     @WebResult(name="Actor")
     public List<ActorDto> findAllActors()
     {
-        List<ActorDto> actors = actorService.findAllActors();
+        List<ActorDto> actors = actorService.findAll();
         return  actors;
     }
 
     @WebResult(name="Actor")
     public ActorDto findActorById(@WebParam(name="id") int id)
     {
-        return actorService.findActorById(id);
+        return actorService.findById(id);
+    }
+
+    @WebResult(name="Actor")
+    public ActorDto addActor(@WebParam(name = "Actor") ActorDto dto) {
+        ActorDto savedDto = actorService.add(dto);
+        return savedDto;
+    }
+
+    @WebResult(name="Actor")
+    public ActorDto updateActor(@WebParam(name = "id")Integer id,@WebParam(name = "Actor") ActorDto dto) {
+        ActorDto updatedDto = actorService.update(id, dto);
+        return updatedDto;
     }
 
 

@@ -3,10 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package gov.iti.jets.entity;
-import gov.iti.jets.entity.Film;
 import jakarta.persistence.*;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -22,7 +20,7 @@ import java.util.List;
     @NamedQuery(name = "Language.findByLanguageId", query = "SELECT l FROM Language l WHERE l.languageId = :languageId"),
     @NamedQuery(name = "Language.findByName", query = "SELECT l FROM Language l WHERE l.name = :name"),
     @NamedQuery(name = "Language.findByLastUpdate", query = "SELECT l FROM Language l WHERE l.lastUpdate = :lastUpdate")})
-public class Language implements Serializable {
+public class Language implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
