@@ -11,7 +11,6 @@ import jakarta.jws.WebService;
 import java.util.List;
 
 @WebService
-
 public class FilmWS {
 
     private FilmService filmService;

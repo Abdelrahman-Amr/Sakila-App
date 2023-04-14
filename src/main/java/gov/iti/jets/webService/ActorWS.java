@@ -1,5 +1,6 @@
 package gov.iti.jets.webService;
 
+import gov.iti.jets.entity.Actor;
 import gov.iti.jets.service.ActorService;
 import gov.iti.jets.dto.ActorDto;
 import jakarta.jws.WebParam;
@@ -12,12 +13,14 @@ import jakarta.ws.rs.core.Response;
 import java.util.List;
 
 @WebService
-public class ActorWS {
+public class ActorWS   {
 
     private ActorService actorService;
     public ActorWS()
     {
+
         actorService = ActorService.getInstance();
+//        baseService = actorService;
     }
     @WebResult(name="Actor")
     public List<ActorDto> findAllActors()

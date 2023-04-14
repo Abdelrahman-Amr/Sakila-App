@@ -10,7 +10,6 @@ import jakarta.jws.WebService;
 
 import java.util.List;
 @WebService
-
 public class LanguageWS {
     private LanguageService languageService;
     public LanguageWS()
