@@ -4,6 +4,8 @@
  */
 package gov.iti.jets.entity;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,10 +18,8 @@ import java.util.List;
  */
 @Entity
 @Table(name = "inventory")
-@NamedQueries({
-    @NamedQuery(name = "Inventory.findAll", query = "SELECT i FROM Inventory i"),
-    @NamedQuery(name = "Inventory.findByInventoryId", query = "SELECT i FROM Inventory i WHERE i.inventoryId = :inventoryId"),
-    @NamedQuery(name = "Inventory.findByLastUpdate", query = "SELECT i FROM Inventory i WHERE i.lastUpdate = :lastUpdate")})
+@Data
+@NoArgsConstructor
 public class Inventory implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,57 +41,7 @@ public class Inventory implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "inventoryId")
     private List<Rental> rentalList;
 
-    public Inventory() {
-    }
 
-    public Inventory(Integer inventoryId) {
-        this.inventoryId = inventoryId;
-    }
-
-    public Inventory(Integer inventoryId, Date lastUpdate) {
-        this.inventoryId = inventoryId;
-        this.lastUpdate = lastUpdate;
-    }
-
-    public Integer getInventoryId() {
-        return inventoryId;
-    }
-
-    public void setInventoryId(Integer inventoryId) {
-        this.inventoryId = inventoryId;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public Film getFilmId() {
-        return filmId;
-    }
-
-    public void setFilmId(Film filmId) {
-        this.filmId = filmId;
-    }
-
-    public Store getStoreId() {
-        return storeId;
-    }
-
-    public void setStoreId(Store storeId) {
-        this.storeId = storeId;
-    }
-
-    public List<Rental> getRentalList() {
-        return rentalList;
-    }
-
-    public void setRentalList(List<Rental> rentalList) {
-        this.rentalList = rentalList;
-    }
 
     @Override
     public int hashCode() {

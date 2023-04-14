@@ -4,4 +4,9 @@
     name="ActorWebService"
     implementation="gov.iti.jets.webService.ActorWS"
     url-pattern="/ws/actor"/>
+
+    <endpoint
+            name="LanguageWebService"
+            implementation="gov.iti.jets.webService.LanguageWS"
+            url-pattern="/ws/language"/>
 </endpoints>

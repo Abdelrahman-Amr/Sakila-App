@@ -3,10 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package gov.iti.jets.entity;
-import gov.iti.jets.entity.City;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +22,9 @@ import java.util.List;
     @NamedQuery(name = "Country.findByCountryId", query = "SELECT c FROM Country c WHERE c.countryId = :countryId"),
     @NamedQuery(name = "Country.findByCountry", query = "SELECT c FROM Country c WHERE c.country = :country"),
     @NamedQuery(name = "Country.findByLastUpdate", query = "SELECT c FROM Country c WHERE c.lastUpdate = :lastUpdate")})
-public class Country implements Serializable {
+@Data
+@NoArgsConstructor
+public class Country implements BaseEntity{
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -36,53 +39,9 @@ public class Country implements Serializable {
     @Column(name = "last_update")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "countryId")
+    @OneToMany( mappedBy = "countryId")
     private List<City> cityList;
 
-    public Country() {
-    }
-
-    public Country(Short countryId) {
-        this.countryId = countryId;
-    }
-
-    public Country(Short countryId, String country, Date lastUpdate) {
-        this.countryId = countryId;
-        this.country = country;
-        this.lastUpdate = lastUpdate;
-    }
-
-    public Short getCountryId() {
-        return countryId;
-    }
-
-    public void setCountryId(Short countryId) {
-        this.countryId = countryId;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public List<City> getCityList() {
-        return cityList;
-    }
-
-    public void setCityList(List<City> cityList) {
-        this.cityList = cityList;
-    }
 
     @Override
     public int hashCode() {

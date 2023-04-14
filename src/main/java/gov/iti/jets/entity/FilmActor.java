@@ -3,11 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package gov.iti.jets.entity;
-import gov.iti.jets.entity.Actor;
-import gov.iti.jets.entity.Film;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -17,11 +18,8 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "film_actor")
-@NamedQueries({
-    @NamedQuery(name = "FilmActor.findAll", query = "SELECT f FROM FilmActor f"),
-    @NamedQuery(name = "FilmActor.findByActorId", query = "SELECT f FROM FilmActor f WHERE f.filmActorPK.actorId = :actorId"),
-    @NamedQuery(name = "FilmActor.findByFilmId", query = "SELECT f FROM FilmActor f WHERE f.filmActorPK.filmId = :filmId"),
-    @NamedQuery(name = "FilmActor.findByLastUpdate", query = "SELECT f FROM FilmActor f WHERE f.lastUpdate = :lastUpdate")})
+@Data
+@NoArgsConstructor
 public class FilmActor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -38,53 +36,7 @@ public class FilmActor implements Serializable {
     @ManyToOne(optional = false)
     private Film film;
 
-    public FilmActor() {
-    }
 
-    public FilmActor(FilmActorPK filmActorPK) {
-        this.filmActorPK = filmActorPK;
-    }
-
-    public FilmActor(FilmActorPK filmActorPK, Date lastUpdate) {
-        this.filmActorPK = filmActorPK;
-        this.lastUpdate = lastUpdate;
-    }
-
-    public FilmActor(short actorId, short filmId) {
-        this.filmActorPK = new FilmActorPK(actorId, filmId);
-    }
-
-    public FilmActorPK getFilmActorPK() {
-        return filmActorPK;
-    }
-
-    public void setFilmActorPK(FilmActorPK filmActorPK) {
-        this.filmActorPK = filmActorPK;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public Actor getActor() {
-        return actor;
-    }
-
-    public void setActor(Actor actor) {
-        this.actor = actor;
-    }
-
-    public Film getFilm() {
-        return film;
-    }
-
-    public void setFilm(Film film) {
-        this.film = film;
-    }
 
     @Override
     public int hashCode() {

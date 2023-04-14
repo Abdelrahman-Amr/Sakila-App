@@ -1,22 +1,25 @@
 package gov.iti.jets.dto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * A DTO for the {@link gov.iti.jets.entity.Staff} entity
  */
 @Data
-public class StaffDto implements Serializable {
-    private final Short staffId;
-    private final String firstName;
-    private final String lastName;
-    private final byte[] picture;
-    private final String email;
-    private final boolean active;
-    private final String username;
-    private final String password;
-    private final Date lastUpdate;
+@NoArgsConstructor
+public class StaffDto extends BaseDto {
+    private Short staffId;
+    private  String firstName;
+    private  String lastName;
+    private  byte[] picture;
+    private  String email;
+    private  boolean active;
+    private  String username;
+    private  String password;
+    private AddressDto addressId;
+//    private Short storeid;
+    private StoreDto storeId;
 }

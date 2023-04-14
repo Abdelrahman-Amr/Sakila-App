@@ -3,12 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package gov.iti.jets.entity;
-import gov.iti.jets.entity.Customer;
+
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import jakarta.persistence.*;
 
 /**
  *
@@ -16,12 +18,8 @@ import jakarta.persistence.*;
  */
 @Entity
 @Table(name = "payment")
-@NamedQueries({
-    @NamedQuery(name = "Payment.findAll", query = "SELECT p FROM Payment p"),
-    @NamedQuery(name = "Payment.findByPaymentId", query = "SELECT p FROM Payment p WHERE p.paymentId = :paymentId"),
-    @NamedQuery(name = "Payment.findByAmount", query = "SELECT p FROM Payment p WHERE p.amount = :amount"),
-    @NamedQuery(name = "Payment.findByPaymentDate", query = "SELECT p FROM Payment p WHERE p.paymentDate = :paymentDate"),
-    @NamedQuery(name = "Payment.findByLastUpdate", query = "SELECT p FROM Payment p WHERE p.lastUpdate = :lastUpdate")})
+@Data
+@NoArgsConstructor
 public class Payment implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,74 +49,7 @@ public class Payment implements Serializable {
     @ManyToOne(optional = false)
     private Staff staffId;
 
-    public Payment() {
-    }
 
-    public Payment(Short paymentId) {
-        this.paymentId = paymentId;
-    }
-
-    public Payment(Short paymentId, BigDecimal amount, Date paymentDate) {
-        this.paymentId = paymentId;
-        this.amount = amount;
-        this.paymentDate = paymentDate;
-    }
-
-    public Short getPaymentId() {
-        return paymentId;
-    }
-
-    public void setPaymentId(Short paymentId) {
-        this.paymentId = paymentId;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public Date getPaymentDate() {
-        return paymentDate;
-    }
-
-    public void setPaymentDate(Date paymentDate) {
-        this.paymentDate = paymentDate;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public Customer getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Customer customerId) {
-        this.customerId = customerId;
-    }
-
-    public Rental getRentalId() {
-        return rentalId;
-    }
-
-    public void setRentalId(Rental rentalId) {
-        this.rentalId = rentalId;
-    }
-
-    public Staff getStaffId() {
-        return staffId;
-    }
-
-    public void setStaffId(Staff staffId) {
-        this.staffId = staffId;
-    }
 
     @Override
     public int hashCode() {

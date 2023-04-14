@@ -3,14 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package gov.iti.jets.entity;
-import gov.iti.jets.entity.Customer;
-import gov.iti.jets.entity.Inventory;
-import gov.iti.jets.entity.Staff;
 
-import java.io.Serializable;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
-import jakarta.persistence.*;
 
 /**
  *
@@ -18,11 +18,9 @@ import jakarta.persistence.*;
  */
 @Entity
 @Table(name = "store")
-@NamedQueries({
-    @NamedQuery(name = "Store.findAll", query = "SELECT s FROM Store s"),
-    @NamedQuery(name = "Store.findByStoreId", query = "SELECT s FROM Store s WHERE s.storeId = :storeId"),
-    @NamedQuery(name = "Store.findByLastUpdate", query = "SELECT s FROM Store s WHERE s.lastUpdate = :lastUpdate")})
-public class Store implements Serializable {
+@Data
+@NoArgsConstructor
+public class Store implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -34,7 +32,7 @@ public class Store implements Serializable {
     @Column(name = "last_update")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "storeId")
+    @OneToMany( mappedBy = "storeId")
     private List<Staff> staffList;
     @JoinColumn(name = "address_id", referencedColumnName = "address_id")
     @ManyToOne(optional = false)
@@ -42,78 +40,11 @@ public class Store implements Serializable {
     @JoinColumn(name = "manager_staff_id", referencedColumnName = "staff_id")
     @OneToOne(optional = false)
     private Staff managerStaffId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "storeId")
+    @OneToMany( mappedBy = "storeId")
     private List<Inventory> inventoryList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "storeId")
+    @OneToMany( mappedBy = "storeId")
     private List<Customer> customerList;
 
-    public Store() {
-    }
-
-    public Store(Short storeId) {
-        this.storeId = storeId;
-    }
-
-    public Store(Short storeId, Date lastUpdate) {
-        this.storeId = storeId;
-        this.lastUpdate = lastUpdate;
-    }
-
-    public Short getStoreId() {
-        return storeId;
-    }
-
-    public void setStoreId(Short storeId) {
-        this.storeId = storeId;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public List<Staff> getStaffList() {
-        return staffList;
-    }
-
-    public void setStaffList(List<Staff> staffList) {
-        this.staffList = staffList;
-    }
-
-    public Address getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(Address addressId) {
-        this.addressId = addressId;
-    }
-
-    public Staff getManagerStaffId() {
-        return managerStaffId;
-    }
-
-    public void setManagerStaffId(Staff managerStaffId) {
-        this.managerStaffId = managerStaffId;
-    }
-
-    public List<Inventory> getInventoryList() {
-        return inventoryList;
-    }
-
-    public void setInventoryList(List<Inventory> inventoryList) {
-        this.inventoryList = inventoryList;
-    }
-
-    public List<Customer> getCustomerList() {
-        return customerList;
-    }
-
-    public void setCustomerList(List<Customer> customerList) {
-        this.customerList = customerList;
-    }
 
     @Override
     public int hashCode() {
@@ -135,9 +66,13 @@ public class Store implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "entity.Store[ storeId=" + storeId + " ]";
-    }
+//    @Override
+//    public String toString() {
+//        return "entity.Store[ storeId=" + storeId + " ]";
+//    }
+@Override
+public String toString() {
+    return "entity.Store[ storeId=" + storeId +" addressId"+addressId.getAddressId();
+}
     
 }

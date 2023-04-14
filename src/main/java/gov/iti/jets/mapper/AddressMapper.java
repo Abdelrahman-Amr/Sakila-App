@@ -2,15 +2,11 @@ package gov.iti.jets.mapper;
 
 import gov.iti.jets.dto.AddressDto;
 import gov.iti.jets.entity.Address;
-import org.mapstruct.*;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.ReportingPolicy;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI)
-public interface AddressMapper {
-    Address toEntity(AddressDto addressDto);
+public interface AddressMapper extends BaseMapper<Address, AddressDto> {
 
-    AddressDto toDto(Address address);
-
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Address partialUpdate(AddressDto addressDto, @MappingTarget Address address);
 }

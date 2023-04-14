@@ -3,10 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package gov.iti.jets.entity;
-import gov.iti.jets.entity.Film;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -17,12 +18,9 @@ import java.util.List;
  */
 @Entity
 @Table(name = "language")
-@NamedQueries({
-    @NamedQuery(name = "Language.findAll", query = "SELECT l FROM Language l"),
-    @NamedQuery(name = "Language.findByLanguageId", query = "SELECT l FROM Language l WHERE l.languageId = :languageId"),
-    @NamedQuery(name = "Language.findByName", query = "SELECT l FROM Language l WHERE l.name = :name"),
-    @NamedQuery(name = "Language.findByLastUpdate", query = "SELECT l FROM Language l WHERE l.lastUpdate = :lastUpdate")})
-public class Language implements Serializable {
+@Data
+@NoArgsConstructor
+public class Language implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,58 +40,7 @@ public class Language implements Serializable {
     @OneToMany(mappedBy = "originalLanguageId")
     private List<Film> filmList1;
 
-    public Language() {
-    }
 
-    public Language(Short languageId) {
-        this.languageId = languageId;
-    }
-
-    public Language(Short languageId, String name, Date lastUpdate) {
-        this.languageId = languageId;
-        this.name = name;
-        this.lastUpdate = lastUpdate;
-    }
-
-    public Short getLanguageId() {
-        return languageId;
-    }
-
-    public void setLanguageId(Short languageId) {
-        this.languageId = languageId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public List<Film> getFilmList() {
-        return filmList;
-    }
-
-    public void setFilmList(List<Film> filmList) {
-        this.filmList = filmList;
-    }
-
-    public List<Film> getFilmList1() {
-        return filmList1;
-    }
-
-    public void setFilmList1(List<Film> filmList1) {
-        this.filmList1 = filmList1;
-    }
 
     @Override
     public int hashCode() {

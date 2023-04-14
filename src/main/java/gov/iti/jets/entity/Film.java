@@ -4,9 +4,12 @@
  */
 package gov.iti.jets.entity;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -16,19 +19,9 @@ import java.util.List;
  */
 @Entity
 @Table(name = "film")
-@NamedQueries({
-    @NamedQuery(name = "Film.findAll", query = "SELECT f FROM Film f"),
-    @NamedQuery(name = "Film.findByFilmId", query = "SELECT f FROM Film f WHERE f.filmId = :filmId"),
-    @NamedQuery(name = "Film.findByTitle", query = "SELECT f FROM Film f WHERE f.title = :title"),
-    @NamedQuery(name = "Film.findByReleaseYear", query = "SELECT f FROM Film f WHERE f.releaseYear = :releaseYear"),
-    @NamedQuery(name = "Film.findByRentalDuration", query = "SELECT f FROM Film f WHERE f.rentalDuration = :rentalDuration"),
-    @NamedQuery(name = "Film.findByRentalRate", query = "SELECT f FROM Film f WHERE f.rentalRate = :rentalRate"),
-    @NamedQuery(name = "Film.findByLength", query = "SELECT f FROM Film f WHERE f.length = :length"),
-    @NamedQuery(name = "Film.findByReplacementCost", query = "SELECT f FROM Film f WHERE f.replacementCost = :replacementCost"),
-    @NamedQuery(name = "Film.findByRating", query = "SELECT f FROM Film f WHERE f.rating = :rating"),
-    @NamedQuery(name = "Film.findBySpecialFeatures", query = "SELECT f FROM Film f WHERE f.specialFeatures = :specialFeatures"),
-    @NamedQuery(name = "Film.findByLastUpdate", query = "SELECT f FROM Film f WHERE f.lastUpdate = :lastUpdate")})
-public class Film implements Serializable {
+@Data
+@NoArgsConstructor
+public class Film implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -65,9 +58,9 @@ public class Film implements Serializable {
     @Column(name = "last_update")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "film")
+    @OneToMany( mappedBy = "film")
     private List<FilmCategory> filmCategoryList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "film")
+    @OneToMany( mappedBy = "film")
     private List<FilmActor> filmActorList;
     @JoinColumn(name = "language_id", referencedColumnName = "language_id")
     @ManyToOne(optional = false)
@@ -78,149 +71,6 @@ public class Film implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "filmId")
     private List<Inventory> inventoryList;
 
-    public Film() {
-    }
-
-    public Film(Short filmId) {
-        this.filmId = filmId;
-    }
-
-    public Film(Short filmId, String title, short rentalDuration, BigDecimal rentalRate, BigDecimal replacementCost, Date lastUpdate) {
-        this.filmId = filmId;
-        this.title = title;
-        this.rentalDuration = rentalDuration;
-        this.rentalRate = rentalRate;
-        this.replacementCost = replacementCost;
-        this.lastUpdate = lastUpdate;
-    }
-
-    public Short getFilmId() {
-        return filmId;
-    }
-
-    public void setFilmId(Short filmId) {
-        this.filmId = filmId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getReleaseYear() {
-        return releaseYear;
-    }
-
-    public void setReleaseYear(Date releaseYear) {
-        this.releaseYear = releaseYear;
-    }
-
-    public short getRentalDuration() {
-        return rentalDuration;
-    }
-
-    public void setRentalDuration(short rentalDuration) {
-        this.rentalDuration = rentalDuration;
-    }
-
-    public BigDecimal getRentalRate() {
-        return rentalRate;
-    }
-
-    public void setRentalRate(BigDecimal rentalRate) {
-        this.rentalRate = rentalRate;
-    }
-
-    public Short getLength() {
-        return length;
-    }
-
-    public void setLength(Short length) {
-        this.length = length;
-    }
-
-    public BigDecimal getReplacementCost() {
-        return replacementCost;
-    }
-
-    public void setReplacementCost(BigDecimal replacementCost) {
-        this.replacementCost = replacementCost;
-    }
-
-    public String getRating() {
-        return rating;
-    }
-
-    public void setRating(String rating) {
-        this.rating = rating;
-    }
-
-    public String getSpecialFeatures() {
-        return specialFeatures;
-    }
-
-    public void setSpecialFeatures(String specialFeatures) {
-        this.specialFeatures = specialFeatures;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public List<FilmCategory> getFilmCategoryList() {
-        return filmCategoryList;
-    }
-
-    public void setFilmCategoryList(List<FilmCategory> filmCategoryList) {
-        this.filmCategoryList = filmCategoryList;
-    }
-
-    public List<FilmActor> getFilmActorList() {
-        return filmActorList;
-    }
-
-    public void setFilmActorList(List<FilmActor> filmActorList) {
-        this.filmActorList = filmActorList;
-    }
-
-    public Language getLanguageId() {
-        return languageId;
-    }
-
-    public void setLanguageId(Language languageId) {
-        this.languageId = languageId;
-    }
-
-    public Language getOriginalLanguageId() {
-        return originalLanguageId;
-    }
-
-    public void setOriginalLanguageId(Language originalLanguageId) {
-        this.originalLanguageId = originalLanguageId;
-    }
-
-    public List<Inventory> getInventoryList() {
-        return inventoryList;
-    }
-
-    public void setInventoryList(List<Inventory> inventoryList) {
-        this.inventoryList = inventoryList;
-    }
 
     @Override
     public int hashCode() {

@@ -19,15 +19,31 @@ public class ActorWS {
     @WebResult(name="Actor")
     public List<ActorDto> findAllActors()
     {
-        List<ActorDto> actors = actorService.findAllActors();
+        List<ActorDto> actors = actorService.findAll();
         return  actors;
     }
 
     @WebResult(name="Actor")
     public ActorDto findActorById(@WebParam(name="id") int id)
     {
-        return actorService.findActorById(id);
+        return actorService.findById(id);
     }
 
+    @WebResult(name="Actor")
+    public ActorDto addActor(@WebParam(name = "Actor") ActorDto dto) {
+        ActorDto savedDto = actorService.add(dto);
+        return savedDto;
+    }
 
+    @WebResult(name="Actor")
+    public ActorDto updateActor(@WebParam(name = "id")Integer id,@WebParam(name = "Actor") ActorDto dto) {
+        ActorDto updatedDto = actorService.update(id, dto);
+        return updatedDto;
+    }
+
+    @WebResult(name="Actor")
+    public ActorDto deleteActorById(@WebParam(name = "id")Integer id) {
+        ActorDto dto = actorService.deleteById(id);
+        return dto;
+    }
 }

@@ -4,8 +4,10 @@
  */
 package gov.iti.jets.entity;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +23,9 @@ import java.util.List;
     @NamedQuery(name = "City.findByCityId", query = "SELECT c FROM City c WHERE c.cityId = :cityId"),
     @NamedQuery(name = "City.findByCity", query = "SELECT c FROM City c WHERE c.city = :city"),
     @NamedQuery(name = "City.findByLastUpdate", query = "SELECT c FROM City c WHERE c.lastUpdate = :lastUpdate")})
-public class City implements Serializable {
+@Data
+@NoArgsConstructor
+public class City implements BaseEntity{
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -36,64 +40,13 @@ public class City implements Serializable {
     @Column(name = "last_update")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cityId")
+    @OneToMany(mappedBy = "cityId")
     private List<Address> addressList;
     @JoinColumn(name = "country_id", referencedColumnName = "country_id")
     @ManyToOne(optional = false)
     private Country countryId;
 
-    public City() {
-    }
 
-    public City(Short cityId) {
-        this.cityId = cityId;
-    }
-
-    public City(Short cityId, String city, Date lastUpdate) {
-        this.cityId = cityId;
-        this.city = city;
-        this.lastUpdate = lastUpdate;
-    }
-
-    public Short getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(Short cityId) {
-        this.cityId = cityId;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public List<Address> getAddressList() {
-        return addressList;
-    }
-
-    public void setAddressList(List<Address> addressList) {
-        this.addressList = addressList;
-    }
-
-    public Country getCountryId() {
-        return countryId;
-    }
-
-    public void setCountryId(Country countryId) {
-        this.countryId = countryId;
-    }
 
     @Override
     public int hashCode() {

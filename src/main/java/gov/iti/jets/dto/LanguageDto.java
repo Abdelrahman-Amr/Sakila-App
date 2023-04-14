@@ -1,16 +1,18 @@
 package gov.iti.jets.dto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * A DTO for the {@link gov.iti.jets.entity.Language} entity
  */
 @Data
-public class LanguageDto implements Serializable {
-    private final Short languageId;
-    private final String name;
-    private final Date lastUpdate;
+@NoArgsConstructor
+public class LanguageDto extends BaseDto{
+    private  Short languageId;
+    private  String name;
+
+
 }

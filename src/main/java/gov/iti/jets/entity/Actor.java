@@ -4,10 +4,13 @@
  */
 package gov.iti.jets.entity;
 
-import java.io.Serializable;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
-import jakarta.persistence.*;
 
 
 /**
@@ -22,7 +25,9 @@ import jakarta.persistence.*;
     @NamedQuery(name = "Actor.findByFirstName", query = "SELECT a FROM Actor a WHERE a.firstName = :firstName"),
     @NamedQuery(name = "Actor.findByLastName", query = "SELECT a FROM Actor a WHERE a.lastName = :lastName"),
     @NamedQuery(name = "Actor.findByLastUpdate", query = "SELECT a FROM Actor a WHERE a.lastUpdate = :lastUpdate")})
-public class Actor implements Serializable, BaseEntity {
+@Data
+@NoArgsConstructor
+public class Actor implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -38,64 +43,19 @@ public class Actor implements Serializable, BaseEntity {
     private String lastName;
     @Basic(optional = false)
     @Column(name = "last_update")
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actor")
+    @OneToMany( mappedBy = "actor")
     private List<FilmActor> filmActorList;
 
-    public Actor() {
-    }
+//    public Actor() {
+//    }
 
     public Actor(Integer actorId) {
         this.actorId = actorId;
     }
 
-    public Actor(Integer actorId, String firstName, String lastName, Date lastUpdate) {
-        this.actorId = actorId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.lastUpdate = lastUpdate;
-    }
 
-    public Integer getActorId() {
-        return actorId;
-    }
-
-    public void setActorId(Integer actorId) {
-        this.actorId = actorId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public List<FilmActor> getFilmActorList() {
-        return filmActorList;
-    }
-
-    public void setFilmActorList(List<FilmActor> filmActorList) {
-        this.filmActorList = filmActorList;
-    }
 
     @Override
     public int hashCode() {

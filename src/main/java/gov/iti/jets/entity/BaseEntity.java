@@ -1,4 +1,6 @@
 package gov.iti.jets.entity;
 
-public interface BaseEntity {
+import java.io.Serializable;
+
+public interface BaseEntity extends Serializable {
 }

@@ -1,20 +1,22 @@
 package gov.iti.jets.dto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
  * A DTO for the {@link gov.iti.jets.entity.Customer} entity
  */
 @Data
-public class CustomerDto implements Serializable {
-    private final Short customerId;
-    private final String firstName;
-    private final String lastName;
-    private final String email;
-    private final boolean active;
-    private final Date createDate;
-    private final Date lastUpdate;
+@NoArgsConstructor
+public class CustomerDto extends BaseDto {
+    private  Short customerId;
+    private  String firstName;
+    private  String lastName;
+    private  String email;
+    private  boolean active;
+    private  LocalDateTime createDate;
 }

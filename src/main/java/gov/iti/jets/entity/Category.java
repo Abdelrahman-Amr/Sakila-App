@@ -4,8 +4,10 @@
  */
 package gov.iti.jets.entity;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +22,10 @@ import java.util.List;
     @NamedQuery(name = "Category.findByCategoryId", query = "SELECT c FROM Category c WHERE c.categoryId = :categoryId"),
     @NamedQuery(name = "Category.findByName", query = "SELECT c FROM Category c WHERE c.name = :name"),
     @NamedQuery(name = "Category.findByLastUpdate", query = "SELECT c FROM Category c WHERE c.lastUpdate = :lastUpdate")})
-public class Category implements Serializable {
+
+@Data
+@NoArgsConstructor
+public class Category implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -35,53 +40,10 @@ public class Category implements Serializable {
     @Column(name = "last_update")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    @OneToMany( mappedBy = "category")
     private List<FilmCategory> filmCategoryList;
 
-    public Category() {
-    }
 
-    public Category(Short categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public Category(Short categoryId, String name, Date lastUpdate) {
-        this.categoryId = categoryId;
-        this.name = name;
-        this.lastUpdate = lastUpdate;
-    }
-
-    public Short getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Short categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public List<FilmCategory> getFilmCategoryList() {
-        return filmCategoryList;
-    }
-
-    public void setFilmCategoryList(List<FilmCategory> filmCategoryList) {
-        this.filmCategoryList = filmCategoryList;
-    }
 
     @Override
     public int hashCode() {
