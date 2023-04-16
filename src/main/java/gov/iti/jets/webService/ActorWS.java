@@ -5,6 +5,12 @@ import gov.iti.jets.dto.ActorDto;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebResult;
 import jakarta.jws.WebService;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
@@ -16,10 +22,17 @@ public class ActorWS {
     {
         actorService = ActorService.getInstance();
     }
-    @WebResult(name="Actor")
+    @WebResult(name="Actors")
     public List<ActorDto> findAllActors()
     {
         List<ActorDto> actors = actorService.findAll();
+        return  actors;
+    }
+
+    @WebResult(name="Actors")
+    public List<ActorDto> getActorsPage(@WebParam(name="page") int page, @WebParam(name="limit") int limit)
+    {
+        List<ActorDto> actors = actorService.getPage(page, limit);
         return  actors;
     }
 

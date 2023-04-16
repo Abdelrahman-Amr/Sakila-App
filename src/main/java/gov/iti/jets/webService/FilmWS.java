@@ -1,6 +1,7 @@
 package gov.iti.jets.webService;
 
 import gov.iti.jets.dto.ActorDto;
+import gov.iti.jets.dto.CountryDto;
 import gov.iti.jets.dto.FilmDto;
 import gov.iti.jets.service.ActorService;
 import gov.iti.jets.service.FilmService;
@@ -19,10 +20,17 @@ public class FilmWS {
     {
         filmService = FilmService.getInstance();
     }
-    @WebResult(name="Film")
+    @WebResult(name="Films")
     public List<FilmDto> findAllFilms()
     {
         List<FilmDto> filmDtos = filmService.findAll();
+        return  filmDtos;
+    }
+
+    @WebResult(name="Films")
+    public List<FilmDto> getFilmsPage(@WebParam(name="page") int page, @WebParam(name="limit") int limit)
+    {
+        List<FilmDto> filmDtos = filmService.getPage(page, limit);
         return  filmDtos;
     }
 

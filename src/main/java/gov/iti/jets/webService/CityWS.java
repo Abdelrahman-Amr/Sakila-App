@@ -1,5 +1,6 @@
 package gov.iti.jets.webService;
 
+import gov.iti.jets.dto.ActorDto;
 import gov.iti.jets.dto.CityDto;
 import gov.iti.jets.dto.CountryDto;
 import gov.iti.jets.service.CityService;
@@ -17,10 +18,16 @@ public class CityWS {
     {
         cityService = CityService.getInstance();
     }
-    @WebResult(name="City")
+    @WebResult(name="Cities")
     public List<CityDto> findAllCities()
     {
         List<CityDto> cityDtos = cityService.findAll();
+        return  cityDtos;
+    }
+    @WebResult(name="Cities")
+    public List<CityDto> getCitiesPage(@WebParam(name="page") int page, @WebParam(name="limit") int limit)
+    {
+        List<CityDto> cityDtos = cityService.getPage(page, limit);
         return  cityDtos;
     }
 

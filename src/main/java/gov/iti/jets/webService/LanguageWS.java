@@ -1,5 +1,6 @@
 package gov.iti.jets.webService;
 
+import gov.iti.jets.dto.FilmDto;
 import gov.iti.jets.dto.LanguageDto;
 import gov.iti.jets.service.LanguageService;
 import jakarta.jws.WebParam;
@@ -15,10 +16,16 @@ public class LanguageWS {
     {
         languageService = LanguageService.getInstance();
     }
-    @WebResult(name="language")
+    @WebResult(name="languages")
     public List<LanguageDto> findAllLanguages()
     {
         List<LanguageDto> languageDtos = languageService.findAll();
+        return  languageDtos;
+    }
+    @WebResult(name="languages")
+    public List<LanguageDto> getLanguagesPage(@WebParam(name="page") int page, @WebParam(name="limit") int limit)
+    {
+        List<LanguageDto> languageDtos = languageService.getPage(page, limit);
         return  languageDtos;
     }
 
