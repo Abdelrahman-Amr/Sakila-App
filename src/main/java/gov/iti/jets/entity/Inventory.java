@@ -7,8 +7,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -20,7 +19,7 @@ import java.util.List;
 @Table(name = "inventory")
 @Data
 @NoArgsConstructor
-public class Inventory implements Serializable {
+public class Inventory implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -30,15 +29,15 @@ public class Inventory implements Serializable {
     private Integer inventoryId;
     @Basic(optional = false)
     @Column(name = "last_update")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastUpdate;
     @JoinColumn(name = "film_id", referencedColumnName = "film_id")
     @ManyToOne(optional = false)
     private Film filmId;
     @JoinColumn(name = "store_id", referencedColumnName = "store_id")
     @ManyToOne(optional = false)
     private Store storeId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "inventoryId")
+    @OneToMany( mappedBy = "inventoryId")
     private List<Rental> rentalList;
 
 

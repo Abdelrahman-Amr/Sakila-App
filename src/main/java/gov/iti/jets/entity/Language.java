@@ -41,7 +41,6 @@ public class Language implements BaseEntity {
     private List<Film> filmList1;
 
 
-
     @Override
     public int hashCode() {
         int hash = 0;

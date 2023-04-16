@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 
@@ -56,8 +55,8 @@ public class Address implements BaseEntity{
     private byte[] location;
     @Basic(optional = false)
     @Column(name = "last_update")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastUpdate;
     @JoinColumn(name = "city_id", referencedColumnName = "city_id")
     @ManyToOne(optional = false)
     private City cityId;
@@ -74,6 +73,14 @@ public class Address implements BaseEntity{
         this.addressId = addressId;
     }
 
+    public Address(Short addressId, String address, String district, String phone, byte[] location, LocalDateTime lastUpdate) {
+        this.addressId = addressId;
+        this.address = address;
+        this.district = district;
+        this.phone = phone;
+        this.location = location;
+        this.lastUpdate = lastUpdate;
+    }
 
 
     @Override

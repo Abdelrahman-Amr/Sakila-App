@@ -4,11 +4,8 @@
  */
 package gov.iti.jets.entity;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 
@@ -18,8 +15,16 @@ import java.util.List;
  */
 @Entity
 @Table(name = "staff")
-@Data
-@NoArgsConstructor
+@NamedQueries({
+    @NamedQuery(name = "Staff.findAll", query = "SELECT s FROM Staff s"),
+    @NamedQuery(name = "Staff.findByStaffId", query = "SELECT s FROM Staff s WHERE s.staffId = :staffId"),
+    @NamedQuery(name = "Staff.findByFirstName", query = "SELECT s FROM Staff s WHERE s.firstName = :firstName"),
+    @NamedQuery(name = "Staff.findByLastName", query = "SELECT s FROM Staff s WHERE s.lastName = :lastName"),
+    @NamedQuery(name = "Staff.findByEmail", query = "SELECT s FROM Staff s WHERE s.email = :email"),
+    @NamedQuery(name = "Staff.findByActive", query = "SELECT s FROM Staff s WHERE s.active = :active"),
+    @NamedQuery(name = "Staff.findByUsername", query = "SELECT s FROM Staff s WHERE s.username = :username"),
+    @NamedQuery(name = "Staff.findByPassword", query = "SELECT s FROM Staff s WHERE s.password = :password"),
+    @NamedQuery(name = "Staff.findByLastUpdate", query = "SELECT s FROM Staff s WHERE s.lastUpdate = :lastUpdate")})
 public class Staff implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -49,8 +54,8 @@ public class Staff implements BaseEntity {
     private String password;
     @Basic(optional = false)
     @Column(name = "last_update")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastUpdate;
     @JoinColumn(name = "address_id", referencedColumnName = "address_id")
     @ManyToOne(optional = false)
     private Address addressId;
@@ -59,12 +64,138 @@ public class Staff implements BaseEntity {
     private Store storeId;
     @OneToOne( mappedBy = "managerStaffId")
     private Store store;
-    @OneToMany( mappedBy = "staffId")
+    @OneToMany( mappedBy = "staffId" , fetch = FetchType.LAZY)
     private List<Rental> rentalList;
-    @OneToMany( mappedBy = "staffId")
+    @OneToMany( mappedBy = "staffId",fetch = FetchType.LAZY)
     private List<Payment> paymentList;
 
+    public Staff() {
+    }
 
+    public Staff(Short staffId) {
+        this.staffId = staffId;
+    }
+
+    public Staff(Short staffId, String firstName, String lastName, boolean active, String username, LocalDateTime lastUpdate) {
+        this.staffId = staffId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.active = active;
+        this.username = username;
+        this.lastUpdate = lastUpdate;
+    }
+
+    public Short getStaffId() {
+        return staffId;
+    }
+
+    public void setStaffId(Short staffId) {
+        this.staffId = staffId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean getActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public LocalDateTime getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(LocalDateTime lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    public Address getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Address addressId) {
+        this.addressId = addressId;
+    }
+
+    public Store getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(Store storeId) {
+        this.storeId = storeId;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
+    }
+
+    public List<Rental> getRentalList() {
+        return rentalList;
+    }
+
+    public void setRentalList(List<Rental> rentalList) {
+        this.rentalList = rentalList;
+    }
+
+    public List<Payment> getPaymentList() {
+        return paymentList;
+    }
+
+    public void setPaymentList(List<Payment> paymentList) {
+        this.paymentList = paymentList;
+    }
 
     @Override
     public int hashCode() {

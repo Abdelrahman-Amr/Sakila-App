@@ -8,9 +8,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -18,9 +17,9 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "payment")
-@Data
 @NoArgsConstructor
-public class Payment implements Serializable {
+@Data
+public class Payment implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -34,19 +33,17 @@ public class Payment implements Serializable {
     private BigDecimal amount;
     @Basic(optional = false)
     @Column(name = "payment_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date paymentDate;
+    private LocalDateTime paymentDate;
     @Column(name = "last_update")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
+    private LocalDateTime lastUpdate;
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Customer customerId;
     @JoinColumn(name = "rental_id", referencedColumnName = "rental_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Rental rentalId;
     @JoinColumn(name = "staff_id", referencedColumnName = "staff_id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Staff staffId;
 
 

@@ -5,11 +5,8 @@
 package gov.iti.jets.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,8 +15,10 @@ import java.util.List;
  */
 @Entity
 @Table(name = "store")
-@Data
-@NoArgsConstructor
+@NamedQueries({
+    @NamedQuery(name = "Store.findAll", query = "SELECT s FROM Store s"),
+    @NamedQuery(name = "Store.findByStoreId", query = "SELECT s FROM Store s WHERE s.storeId = :storeId"),
+    @NamedQuery(name = "Store.findByLastUpdate", query = "SELECT s FROM Store s WHERE s.lastUpdate = :lastUpdate")})
 public class Store implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -30,8 +29,8 @@ public class Store implements BaseEntity {
     private Short storeId;
     @Basic(optional = false)
     @Column(name = "last_update")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastUpdate;
     @OneToMany( mappedBy = "storeId")
     private List<Staff> staffList;
     @JoinColumn(name = "address_id", referencedColumnName = "address_id")
@@ -45,6 +44,73 @@ public class Store implements BaseEntity {
     @OneToMany( mappedBy = "storeId")
     private List<Customer> customerList;
 
+    public Store() {
+    }
+
+    public Store(Short storeId) {
+        this.storeId = storeId;
+    }
+
+    public Store(Short storeId, LocalDateTime lastUpdate) {
+        this.storeId = storeId;
+        this.lastUpdate = lastUpdate;
+    }
+
+    public Short getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(Short storeId) {
+        this.storeId = storeId;
+    }
+
+    public LocalDateTime getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(LocalDateTime lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    public List<Staff> getStaffList() {
+        return staffList;
+    }
+
+    public void setStaffList(List<Staff> staffList) {
+        this.staffList = staffList;
+    }
+
+    public Address getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Address addressId) {
+        this.addressId = addressId;
+    }
+
+    public Staff getManagerStaffId() {
+        return managerStaffId;
+    }
+
+    public void setManagerStaffId(Staff managerStaffId) {
+        this.managerStaffId = managerStaffId;
+    }
+
+    public List<Inventory> getInventoryList() {
+        return inventoryList;
+    }
+
+    public void setInventoryList(List<Inventory> inventoryList) {
+        this.inventoryList = inventoryList;
+    }
+
+    public List<Customer> getCustomerList() {
+        return customerList;
+    }
+
+    public void setCustomerList(List<Customer> customerList) {
+        this.customerList = customerList;
+    }
 
     @Override
     public int hashCode() {

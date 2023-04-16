@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 
@@ -44,17 +43,9 @@ public class Actor implements BaseEntity {
     @Basic(optional = false)
     @Column(name = "last_update")
 //    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
+    private LocalDateTime lastUpdate;
     @OneToMany( mappedBy = "actor")
     private List<FilmActor> filmActorList;
-
-//    public Actor() {
-//    }
-
-    public Actor(Integer actorId) {
-        this.actorId = actorId;
-    }
-
 
 
     @Override

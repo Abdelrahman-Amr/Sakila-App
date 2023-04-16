@@ -18,11 +18,6 @@ import java.util.List;
  */
 @Entity
 @Table(name = "city")
-@NamedQueries({
-    @NamedQuery(name = "City.findAll", query = "SELECT c FROM City c"),
-    @NamedQuery(name = "City.findByCityId", query = "SELECT c FROM City c WHERE c.cityId = :cityId"),
-    @NamedQuery(name = "City.findByCity", query = "SELECT c FROM City c WHERE c.city = :city"),
-    @NamedQuery(name = "City.findByLastUpdate", query = "SELECT c FROM City c WHERE c.lastUpdate = :lastUpdate")})
 @Data
 @NoArgsConstructor
 public class City implements BaseEntity{
@@ -47,7 +42,6 @@ public class City implements BaseEntity{
     private Country countryId;
 
 
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -68,9 +62,18 @@ public class City implements BaseEntity{
         return true;
     }
 
+//    @Override
+//    public String toString() {
+//        return "entity.City[ cityId=" + cityId + " ]";
+//    }
+//
+
     @Override
     public String toString() {
-        return "entity.City[ cityId=" + cityId + " ]";
+        return "City{" +
+                "cityId=" + cityId +
+                ", city='" + city + '\'' +
+                ", countryId=" + countryId +
+                '}';
     }
-    
 }

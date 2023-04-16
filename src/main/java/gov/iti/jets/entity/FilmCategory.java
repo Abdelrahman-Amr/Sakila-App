@@ -4,8 +4,6 @@
  */
 package gov.iti.jets.entity;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,8 +15,11 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "film_category")
-@Data
-@NoArgsConstructor
+@NamedQueries({
+    @NamedQuery(name = "FilmCategory.findAll", query = "SELECT f FROM FilmCategory f"),
+    @NamedQuery(name = "FilmCategory.findByFilmId", query = "SELECT f FROM FilmCategory f WHERE f.filmCategoryPK.filmId = :filmId"),
+    @NamedQuery(name = "FilmCategory.findByCategoryId", query = "SELECT f FROM FilmCategory f WHERE f.filmCategoryPK.categoryId = :categoryId"),
+    @NamedQuery(name = "FilmCategory.findByLastUpdate", query = "SELECT f FROM FilmCategory f WHERE f.lastUpdate = :lastUpdate")})
 public class FilmCategory implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,7 +36,53 @@ public class FilmCategory implements Serializable {
     @ManyToOne(optional = false)
     private Film film;
 
+    public FilmCategory() {
+    }
 
+    public FilmCategory(FilmCategoryPK filmCategoryPK) {
+        this.filmCategoryPK = filmCategoryPK;
+    }
+
+    public FilmCategory(FilmCategoryPK filmCategoryPK, Date lastUpdate) {
+        this.filmCategoryPK = filmCategoryPK;
+        this.lastUpdate = lastUpdate;
+    }
+
+    public FilmCategory(short filmId, short categoryId) {
+        this.filmCategoryPK = new FilmCategoryPK(filmId, categoryId);
+    }
+
+    public FilmCategoryPK getFilmCategoryPK() {
+        return filmCategoryPK;
+    }
+
+    public void setFilmCategoryPK(FilmCategoryPK filmCategoryPK) {
+        this.filmCategoryPK = filmCategoryPK;
+    }
+
+    public Date getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Film getFilm() {
+        return film;
+    }
+
+    public void setFilm(Film film) {
+        this.film = film;
+    }
 
     @Override
     public int hashCode() {

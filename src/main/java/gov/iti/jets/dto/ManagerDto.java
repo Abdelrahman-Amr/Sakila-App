@@ -3,8 +3,6 @@ package gov.iti.jets.dto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Data
 @NoArgsConstructor
 public class ManagerDto extends BaseDto {
@@ -16,6 +14,7 @@ public class ManagerDto extends BaseDto {
     private  boolean active;
     private  String username;
     private  String password;
+//    private LocalDateTime lastUpdate;
 //    private AddressDto addressId;
     //    private Short storeid;
 

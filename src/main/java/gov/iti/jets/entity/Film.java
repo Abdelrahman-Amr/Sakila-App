@@ -36,8 +36,8 @@ public class Film implements BaseEntity {
     @Column(name = "description")
     private String description;
     @Column(name = "release_year")
-    @Temporal(TemporalType.DATE)
-    private Date releaseYear;
+//    @Temporal(TemporalType.DATE)
+    private Integer releaseYear;
     @Basic(optional = false)
     @Column(name = "rental_duration")
     private short rentalDuration;
@@ -70,7 +70,6 @@ public class Film implements BaseEntity {
     private Language originalLanguageId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "filmId")
     private List<Inventory> inventoryList;
-
 
     @Override
     public int hashCode() {

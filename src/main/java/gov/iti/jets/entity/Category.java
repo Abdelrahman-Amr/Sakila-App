@@ -4,11 +4,8 @@
  */
 package gov.iti.jets.entity;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,8 +20,6 @@ import java.util.List;
     @NamedQuery(name = "Category.findByName", query = "SELECT c FROM Category c WHERE c.name = :name"),
     @NamedQuery(name = "Category.findByLastUpdate", query = "SELECT c FROM Category c WHERE c.lastUpdate = :lastUpdate")})
 
-@Data
-@NoArgsConstructor
 public class Category implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -38,12 +33,55 @@ public class Category implements BaseEntity {
     private String name;
     @Basic(optional = false)
     @Column(name = "last_update")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastUpdate;
     @OneToMany( mappedBy = "category")
     private List<FilmCategory> filmCategoryList;
 
+    public Category() {
+    }
 
+    public Category(Short categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public Category(Short categoryId, String name, LocalDateTime lastUpdate) {
+        this.categoryId = categoryId;
+        this.name = name;
+        this.lastUpdate = lastUpdate;
+    }
+
+    public Short getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Short categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDateTime getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(LocalDateTime lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    public List<FilmCategory> getFilmCategoryList() {
+        return filmCategoryList;
+    }
+
+    public void setFilmCategoryList(List<FilmCategory> filmCategoryList) {
+        this.filmCategoryList = filmCategoryList;
+    }
 
     @Override
     public int hashCode() {

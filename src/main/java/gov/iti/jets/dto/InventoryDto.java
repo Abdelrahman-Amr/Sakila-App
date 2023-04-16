@@ -1,15 +1,19 @@
 package gov.iti.jets.dto;
 
+import gov.iti.jets.dto.miniDto.MiniFilmDto;
+import gov.iti.jets.dto.miniDto.MiniStoreDto;
 import lombok.Data;
-
-import java.io.Serializable;
-import java.util.Date;
+import lombok.NoArgsConstructor;
 
 /**
  * A DTO for the {@link gov.iti.jets.entity.Inventory} entity
  */
 @Data
-public class InventoryDto implements Serializable {
-    private final Integer inventoryId;
-    private final Date lastUpdate;
+@NoArgsConstructor
+public class InventoryDto extends BaseDto {
+    private  Integer inventoryId;
+    private MiniFilmDto filmId;
+    private MiniStoreDto storeId;
+//    private FilmDto filmId;
+//    private StoreDto storeId;
 }

@@ -9,4 +9,19 @@
             name="LanguageWebService"
             implementation="gov.iti.jets.webService.LanguageWS"
             url-pattern="/ws/language"/>
+
+    <endpoint
+            name="FilmWebService"
+            implementation="gov.iti.jets.webService.FilmWS"
+            url-pattern="/ws/film"/>
+
+    <endpoint
+            name="CountryWebService"
+            implementation="gov.iti.jets.webService.CountryWS"
+            url-pattern="/ws/country"/>
+
+    <endpoint
+            name="CityWebService"
+            implementation="gov.iti.jets.webService.CityWS"
+            url-pattern="/ws/city"/>
 </endpoints>

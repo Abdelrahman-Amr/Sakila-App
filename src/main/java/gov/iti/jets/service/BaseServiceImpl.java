@@ -13,10 +13,12 @@ import java.util.List;
 
 public abstract  class BaseServiceImpl<E extends BaseEntity, D extends BaseDto, T>  implements BaseService<E,D,T > {
     private Class<?> entityClass;
+    private Class<?> mapperClass;
     protected BaseMapper<E, D> baseMapper;
     public BaseServiceImpl(Class<?> entityClass, Class<?> mapperClass)
     {
         this.entityClass = entityClass;
+        this.mapperClass = mapperClass;
         baseMapper = (BaseMapper<E, D>) Mappers.getMapper(mapperClass);
     }
     @Override
@@ -35,20 +37,20 @@ public abstract  class BaseServiceImpl<E extends BaseEntity, D extends BaseDto, 
 
     @Override
     public D add(D dto) {
-        dto.setLastUpdate(new Date());
         BaseRepositoryImpl<E,T> baseRepository = new BaseRepositoryImpl<>(entityClass, MyLocal.getInstance().get());
+        dto.setLastUpdate(new Date());
         E savedEntity = baseRepository.add(baseMapper.toEntity(dto));
         return  baseMapper.toDto(savedEntity);
     }
 
     @Override
     public D update(T id, D dto) {
-        dto.setLastUpdate(new Date());
         BaseRepositoryImpl<E,T> baseRepository = new BaseRepositoryImpl<>(entityClass, MyLocal.getInstance().get());
+        dto.setLastUpdate(new Date());
         E entity = baseRepository.findById(id);
-        E ent = baseMapper.partialUpdate(dto,entity);
-        System.out.println(ent);
-        E  updatedEntity = baseRepository.update(ent);
+         entity = baseMapper.partialUpdate(dto,entity);
+        System.out.println(entity);
+        E  updatedEntity = baseRepository.update(entity);
         return baseMapper.toDto(updatedEntity);
     }
 

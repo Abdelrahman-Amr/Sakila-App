@@ -7,8 +7,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -20,7 +19,7 @@ import java.util.List;
 @Table(name = "rental")
 @Data
 @NoArgsConstructor
-public class Rental implements Serializable {
+public class Rental implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -30,27 +29,26 @@ public class Rental implements Serializable {
     private Integer rentalId;
     @Basic(optional = false)
     @Column(name = "rental_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date rentalDate;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime rentalDate;
     @Column(name = "return_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date returnDate;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime returnDate;
     @Basic(optional = false)
     @Column(name = "last_update")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
+    private LocalDateTime lastUpdate;
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Customer customerId;
     @JoinColumn(name = "inventory_id", referencedColumnName = "inventory_id")
     @ManyToOne(optional = false)
     private Inventory inventoryId;
     @JoinColumn(name = "staff_id", referencedColumnName = "staff_id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Staff staffId;
-    @OneToMany(mappedBy = "rentalId")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "rentalId")
     private List<Payment> paymentList;
-
 
 
     @Override

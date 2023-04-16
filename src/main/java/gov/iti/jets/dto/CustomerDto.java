@@ -1,11 +1,10 @@
 package gov.iti.jets.dto;
 
+import gov.iti.jets.dto.miniDto.MiniStoreDto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * A DTO for the {@link gov.iti.jets.entity.Customer} entity
@@ -18,5 +17,8 @@ public class CustomerDto extends BaseDto {
     private  String lastName;
     private  String email;
     private  boolean active;
-    private  LocalDateTime createDate;
+    private LocalDateTime createDate;
+    private AddressDto addressId;
+    private MiniStoreDto storeId;
+//    private  Date lastUpdate;
 }
