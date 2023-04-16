@@ -24,4 +24,9 @@
             name="CityWebService"
             implementation="gov.iti.jets.webService.CityWS"
             url-pattern="/ws/city"/>
+
+    <endpoint
+            name="AddressWebService"
+            implementation="gov.iti.jets.webService.AddressWS"
+            url-pattern="/ws/address"/>
 </endpoints>
