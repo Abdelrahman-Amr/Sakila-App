@@ -1,0 +1,91 @@
+POST http://localhost:9090/sakila-soap/ws/language HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:findAllLanguages>
+            
+        </jets:findAllLanguages>
+    </soap:Body>
+</soap:Envelope>
+
+###
+
+POST http://localhost:9090/sakila-soap/ws/language HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:getLanguagesPage>
+            <page>2</page>
+            <limit>4</limit>
+        </jets:getLanguagesPage>
+    </soap:Body>
+
+###
+
+POST http://localhost:9090/sakila-soap/ws/language HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:findLanguageById>
+            <id>1</id>
+        </jets:findLanguageById>
+    </soap:Body>
+</soap:Envelope>
+
+###
+POST http://localhost:9090/sakila-soap/ws/language HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:addLanguage>
+            <language>
+                <name>Sha3by</name>
+        </language>
+        </jets:addLanguage>
+    </soap:Body>
+</soap:Envelope>
+###
+POST http://localhost:9090/sakila-soap/ws/language HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:updateLanguage>
+            <id>8</id>
+            <language>
+                <languageId>8</languageId>
+                <name>Sha3byaa</name>
+        </language>
+        <lastUpdate>2006-02-15T03:34:33+02:00</lastUpdate>
+      
+        </jets:updateLanguage>
+    </soap:Body>
+</soap:Envelope>
+
+###
+POST http://localhost:9090/sakila-soap/ws/language HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:deleteLanguageById>
+            <id>8</id>
+        </jets:deleteLanguageById>
+    </soap:Body>
+</soap:Envelope>

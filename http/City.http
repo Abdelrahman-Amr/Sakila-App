@@ -1,0 +1,104 @@
+POST http://localhost:9090/sakila-soap/ws/city HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:findAllCities>
+            
+        </jets:findAllCities>
+    </soap:Body>
+</soap:Envelope>
+
+###
+
+POST http://localhost:9090/sakila-soap/ws/city HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:getCitiesPage>
+            <page>2</page>
+            <limit>4</limit>
+        </jets:getCitiesPage>
+    </soap:Body>
+</soap:Envelope>
+
+###
+
+POST http://localhost:9090/sakila-soap/ws/city HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:findCityById>
+            <id>1</id>
+        </jets:findCityById>
+    </soap:Body>
+</soap:Envelope>
+
+###
+POST http://localhost:9090/sakila-soap/ws/city HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:addCity>
+       <City>
+        <lastUpdate>2006-02-15T03:45:25+02:00</lastUpdate>
+        <city>xxxx</city>
+        <countryId>
+          <lastUpdate>2006-02-15T03:44:00+02:00</lastUpdate>
+          <country>Spain</country>
+          <countryId>87</countryId>
+        </countryId>
+      </City>
+        </jets:addCity>
+    </soap:Body>
+</soap:Envelope>
+###
+POST http://localhost:9090/sakila-soap/ws/city HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:updateCity>
+            <id>1</id>
+        
+     <City>
+        <lastUpdate>2006-02-15T03:45:25+02:00</lastUpdate>
+        <city>A Corua (La Corua)</city>
+        <cityId>1</cityId>
+        <countryId>
+          <lastUpdate>2006-02-15T03:44:00+02:00</lastUpdate>
+          <country>Spain</country>
+          <countryId>1</countryId>
+        </countryId>
+      </City>
+      
+        </jets:updateCity>
+    </soap:Body>
+</soap:Envelope>
+
+###
+POST http://localhost:9090/sakila-soap/ws/city HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:deleteCityById>
+            <id>603</id>
+        </jets:deleteCityById>
+    </soap:Body>
+</soap:Envelope>

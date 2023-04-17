@@ -1,0 +1,117 @@
+POST http://localhost:9090/sakila-soap/ws/film HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:findAllFilms>
+            
+        </jets:findAllFilms>
+    </soap:Body>
+</soap:Envelope>
+
+###
+
+POST http://localhost:9090/sakila-soap/ws/film HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:getFilmsPage>
+            <page>2</page>
+            <limit>4</limit>
+        </jets:getFilmsPage>
+    </soap:Body>
+
+###
+
+POST http://localhost:9090/sakila-soap/ws/film HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:findFilmById>
+            <id>1001</id>
+        </jets:findFilmById>
+    </soap:Body>
+</soap:Envelope>
+
+###
+POST http://localhost:9090/sakila-soap/ws/film HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:addFilm>
+         <Film>
+            <lastUpdate>2023-04-16T07:16:59.705+02:00</lastUpdate>
+            <description>A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies</description>
+            <filmId>1001</filmId>
+            <languageId>
+            <lastUpdate>2006-02-15T06:02:19+02:00</lastUpdate>
+            <languageId>1</languageId>
+            <name>English</name>
+            </languageId>
+            <length>86</length>
+            <rating>PG</rating>
+            <rentalDuration>6</rentalDuration>
+            <rentalRate>0.99</rentalRate>
+            <replacementCost>20.99</replacementCost>
+            <specialFeatures>Deleted Scenes,Behind the Scenes</specialFeatures>
+            <title>Ellemby</title>
+      </Film>
+        </jets:addFilm>
+    </soap:Body>
+</soap:Envelope>
+###
+POST http://localhost:9090/sakila-soap/ws/film HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:updateFilm>
+            <id>1001</id>
+           <Film>
+            <lastUpdate>2023-04-16T07:16:59.705+02:00</lastUpdate>
+            <description>A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies</description>
+            <filmId>1001</filmId>
+            <languageId>
+            <lastUpdate>2006-02-15T06:02:19+02:00</lastUpdate>
+            <languageId>1</languageId>
+            <name>English</name>
+            </languageId>
+            <length>86</length>
+            <rating>PG</rating>
+            <rentalDuration>6</rentalDuration>
+            <rentalRate>0.99</rentalRate>
+            <replacementCost>20.99</replacementCost>
+            <specialFeatures>Deleted Scenes,Behind the Scenes</specialFeatures>
+            <title>Ellemby2</title>
+      </Film>
+      
+        </jets:updateFilm>
+    </soap:Body>
+</soap:Envelope>
+
+###
+POST http://localhost:9090/sakila-soap/ws/film HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:deleteFilmById>
+            <id>1001</id>
+        </jets:deleteFilmById>
+    </soap:Body>
+</soap:Envelope>

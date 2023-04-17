@@ -29,4 +29,14 @@
             name="AddressWebService"
             implementation="gov.iti.jets.webService.AddressWS"
             url-pattern="/ws/address"/>
+
+    <endpoint
+            name="CategoryWebService"
+            implementation="gov.iti.jets.webService.CategoryWS"
+            url-pattern="/ws/category"/>
+
+    <endpoint
+            name="CustomerWebService"
+            implementation="gov.iti.jets.webService.CustomerWS"
+            url-pattern="/ws/customer"/>
 </endpoints>

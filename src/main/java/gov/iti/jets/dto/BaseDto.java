@@ -7,5 +7,5 @@ import java.util.Date;
 
 @Data
 public class BaseDto implements Serializable {
-    private Date lastUpdate;
+    private  transient  Date lastUpdate;
 }

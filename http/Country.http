@@ -1,0 +1,92 @@
+POST http://localhost:9090/sakila-soap/ws/country HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:findAllCountries>
+            
+        </jets:findAllCountries>
+    </soap:Body>
+</soap:Envelope>
+
+###
+
+POST http://localhost:9090/sakila-soap/ws/country HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:getCountriesPage>
+            <page>2</page>
+            <limit>4</limit>
+        </jets:getCountriesPage>
+    </soap:Body>
+
+###
+
+POST http://localhost:9090/sakila-soap/ws/country HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:findCountryById>
+            <id>1</id>
+        </jets:findCountryById>
+    </soap:Body>
+</soap:Envelope>
+
+###
+POST http://localhost:9090/sakila-soap/ws/country HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:addCountry>
+       <Country>
+            <lastUpdate>2023-04-15T21:45:44+02:00</lastUpdate>
+            <country>ksa</country>
+      </Country>
+        </jets:addCountry>
+    </soap:Body>
+</soap:Envelope>
+###
+POST http://localhost:9090/sakila-soap/ws/country HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:updateCountry>
+            <id>111</id>
+           <Country>
+        <lastUpdate>2023-04-16T07:24:50.908+02:00</lastUpdate>
+        <country>ee</country>
+        <countryId>111</countryId>
+      </Country>
+      
+        </jets:updateCountry>
+    </soap:Body>
+</soap:Envelope>
+
+###
+POST http://localhost:9090/sakila-soap/ws/country HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:deleteCountryById>
+            <id>111</id>
+        </jets:deleteCountryById>
+    </soap:Body>
+</soap:Envelope>
