@@ -1,0 +1,193 @@
+POST http://localhost:9090/sakila-soap/ws/rental HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:findAllRentals>
+            
+        </jets:findAllRentals>
+    </soap:Body>
+</soap:Envelope>
+
+###
+
+POST http://localhost:9090/sakila-soap/ws/rental HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:getRentalsPage>
+            <page>2</page>
+            <limit>4</limit>
+        </jets:getRentalsPage>
+    </soap:Body>
+
+###
+
+POST http://localhost:9090/sakila-soap/ws/rental HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:findRentalById>
+            <id>1</id>
+        </jets:findRentalById>
+    </soap:Body>
+</soap:Envelope>
+
+###
+POST http://localhost:9090/sakila-soap/ws/rental HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:addRental>
+         <rental>
+        <lastUpdate>2023-04-17T04:38:55+02:00</lastUpdate>
+        <customerId>
+          <lastUpdate>2023-04-17T04:16:45+02:00</lastUpdate>
+          <active>true</active>
+          <addressId>
+            <lastUpdate>2014-09-25T22:30:27+03:00</lastUpdate>
+            <address>47 MySakila Drive</address>
+            <addressId>1</addressId>
+            <cityId>
+              <lastUpdate>2006-02-15T03:45:25+02:00</lastUpdate>
+              <city>Lethbridge</city>
+              <cityId>300</cityId>
+              <countryId>
+                <lastUpdate>2006-02-15T03:44:00+02:00</lastUpdate>
+                <country>Canada</country>
+                <countryId>20</countryId>
+              </countryId>
+            </cityId>
+            <district>Alberta</district>
+            <location>AAAAAAEBAAAAPgoyXWM0XMB2H9uNmdlIQA==</location>
+            <phone></phone>
+            <postalCode></postalCode>
+          </addressId>
+          <customerId>5</customerId>
+          <email>MARY.SMITH@sakilacustomer.org</email>
+          <firstName>MARY</firstName>
+          <lastName>SMITH</lastName>
+        </customerId>
+        <inventoryId>
+          <lastUpdate>2023-04-17T07:59:50+02:00</lastUpdate>
+          <filmId>
+            <lastUpdate>2023-04-17T04:36:33+02:00</lastUpdate>
+            <description>A Epic Dramaa of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies</description>
+            <filmId>1</filmId>
+            <releaseYear>2006</releaseYear>
+            <title>ACADEMY DINOSAUR</title>
+          </filmId>
+          <inventoryId>1</inventoryId>
+          <storeId>
+            <lastUpdate>2006-02-15T03:57:12+02:00</lastUpdate>
+            <storeId>2</storeId>
+          </storeId>
+        </inventoryId>
+        <rentalDate>2005-05-24T22:53:30+03:00</rentalDate>
+        <returnDate>2005-05-26T22:04:30+03:00</returnDate>
+        <staffId>
+          <lastUpdate>2006-02-15T02:57:16+02:00</lastUpdate>
+          <email>Jon.Stephens@sakilastaff.com</email>
+          <firstName>Jon</firstName>
+          <lastName>Stephens</lastName>
+          <staffId>2</staffId>
+          <username>Jon</username>
+        </staffId>
+      </rental>
+        </jets:addRental>
+    </soap:Body>
+</soap:Envelope>
+###
+POST http://localhost:9090/sakila-soap/ws/rental HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:updateRental>
+            <id>16051</id>
+         <rental>
+        <lastUpdate>2023-04-17T12:07:56.034+02:00</lastUpdate>
+        <customerId>
+          <lastUpdate>2023-04-17T04:16:45+02:00</lastUpdate>
+          <active>true</active>
+          <addressId>
+            <lastUpdate>2014-09-25T22:30:27+03:00</lastUpdate>
+            <address>47 MySakila Drive</address>
+            <addressId>1</addressId>
+            <cityId>
+              <lastUpdate>2006-02-15T03:45:25+02:00</lastUpdate>
+              <city>Lethbridge</city>
+              <cityId>300</cityId>
+              <countryId>
+                <lastUpdate>2006-02-15T03:44:00+02:00</lastUpdate>
+                <country>Canada</country>
+                <countryId>20</countryId>
+              </countryId>
+            </cityId>
+            <district>Alberta</district>
+            <location>AAAAAAEBAAAAPgoyXWM0XMB2H9uNmdlIQA==</location>
+            <phone></phone>
+            <postalCode></postalCode>
+          </addressId>
+          <customerId>4</customerId>
+          <email>MARY.SMITH@sakilacustomer.org</email>
+          <firstName>MARY</firstName>
+          <lastName>SMITH</lastName>
+        </customerId>
+        <inventoryId>
+          <lastUpdate>2023-04-17T07:59:50+02:00</lastUpdate>
+          <filmId>
+            <lastUpdate>2023-04-17T04:36:33+02:00</lastUpdate>
+            <description>A Epic Dramaa of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies</description>
+            <filmId>1</filmId>
+            <releaseYear>2006</releaseYear>
+            <title>ACADEMY DINOSAUR</title>
+          </filmId>
+          <inventoryId>1</inventoryId>
+          <storeId>
+            <lastUpdate>2006-02-15T03:57:12+02:00</lastUpdate>
+            <storeId>2</storeId>
+          </storeId>
+        </inventoryId>
+        <rentalDate>2005-05-24T22:53:30+03:00</rentalDate>
+        <rentalId>16051</rentalId>
+        <returnDate>2005-05-26T22:04:30+03:00</returnDate>
+        <staffId>
+          <lastUpdate>2006-02-15T02:57:16+02:00</lastUpdate>
+          <email>Jon.Stephens@sakilastaff.com</email>
+          <firstName>Jon</firstName>
+          <lastName>Stephens</lastName>
+          <staffId>2</staffId>
+          <username>Jon</username>
+        </staffId>
+      </rental>
+        </jets:updateRental>
+    </soap:Body>
+</soap:Envelope>
+
+###
+POST http://localhost:9090/sakila-soap/ws/rental HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:deleteRentalById>
+            <id>16051</id>
+        </jets:deleteRentalById>
+    </soap:Body>
+</soap:Envelope>

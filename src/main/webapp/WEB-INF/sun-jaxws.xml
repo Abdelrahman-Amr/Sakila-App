@@ -48,4 +48,9 @@
             name="PaymentWebService"
             implementation="gov.iti.jets.webService.PaymentWS"
             url-pattern="/ws/payment"/>
+
+    <endpoint
+            name="RentalWebService"
+            implementation="gov.iti.jets.webService.RentalWS"
+            url-pattern="/ws/rental"/>
 </endpoints>
