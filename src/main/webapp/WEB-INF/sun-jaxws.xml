@@ -39,4 +39,8 @@
             name="CustomerWebService"
             implementation="gov.iti.jets.webService.CustomerWS"
             url-pattern="/ws/customer"/>
+    <endpoint
+            name="InventoryWebService"
+            implementation="gov.iti.jets.webService.InventoryWS"
+            url-pattern="/ws/inventory"/>
 </endpoints>
