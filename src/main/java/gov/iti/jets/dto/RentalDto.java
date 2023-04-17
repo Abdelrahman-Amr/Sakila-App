@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * A DTO for the {@link gov.iti.jets.entity.Rental} entity
@@ -14,8 +15,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class RentalDto extends BaseDto {
     private  Integer rentalId;
-    private  LocalDateTime rentalDate;
-    private  LocalDateTime returnDate;
+    private Date rentalDate;
+    private  Date returnDate;
     private MiniCustomerDto customerId;
     private  InventoryDto inventoryId;
     private MiniStaffDto staffId;

@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 
@@ -41,11 +42,11 @@ public class Customer implements BaseEntity {
     private boolean active;
     @Basic(optional = false)
     @Column(name = "create_date")
-//    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime createDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
     @Column(name = "last_update")
-//    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime lastUpdate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastUpdate;
     @OneToMany( mappedBy = "customerId", fetch = FetchType.LAZY)
     private List<Rental> rentalList;
     @OneToMany( mappedBy = "customerId", fetch = FetchType.LAZY)

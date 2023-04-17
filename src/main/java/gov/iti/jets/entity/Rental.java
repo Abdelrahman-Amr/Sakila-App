@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 
@@ -29,15 +30,15 @@ public class Rental implements BaseEntity {
     private Integer rentalId;
     @Basic(optional = false)
     @Column(name = "rental_date")
-//    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime rentalDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date rentalDate;
     @Column(name = "return_date")
-//    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime returnDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date returnDate;
     @Basic(optional = false)
     @Column(name = "last_update")
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime lastUpdate;
+    private Date lastUpdate;
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
     @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Customer customerId;

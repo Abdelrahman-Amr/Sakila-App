@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 
@@ -42,8 +43,8 @@ public class Actor implements BaseEntity {
     private String lastName;
     @Basic(optional = false)
     @Column(name = "last_update")
-//    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime lastUpdate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastUpdate;
     @OneToMany( mappedBy = "actor")
     private List<FilmActor> filmActorList;
 

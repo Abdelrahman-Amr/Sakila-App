@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  *
@@ -33,9 +34,11 @@ public class Payment implements BaseEntity {
     private BigDecimal amount;
     @Basic(optional = false)
     @Column(name = "payment_date")
-    private LocalDateTime paymentDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date paymentDate;
     @Column(name = "last_update")
-    private LocalDateTime lastUpdate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastUpdate;
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Customer customerId;

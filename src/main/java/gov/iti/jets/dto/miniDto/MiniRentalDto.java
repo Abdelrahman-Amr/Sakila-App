@@ -6,13 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
 public class MiniRentalDto extends BaseDto {
     private  Integer rentalId;
-    private LocalDateTime rentalDate;
-    private  LocalDateTime returnDate;
+    private Date rentalDate;
+    private  Date returnDate;
     private InventoryDto inventoryId;
 
 }

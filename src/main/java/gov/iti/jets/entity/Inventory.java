@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 
@@ -29,8 +30,8 @@ public class Inventory implements BaseEntity {
     private Integer inventoryId;
     @Basic(optional = false)
     @Column(name = "last_update")
-//    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime lastUpdate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastUpdate;
     @JoinColumn(name = "film_id", referencedColumnName = "film_id")
     @ManyToOne(optional = false)
     private Film filmId;
