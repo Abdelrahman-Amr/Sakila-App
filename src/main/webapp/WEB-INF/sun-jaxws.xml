@@ -43,4 +43,9 @@
             name="InventoryWebService"
             implementation="gov.iti.jets.webService.InventoryWS"
             url-pattern="/ws/inventory"/>
+
+    <endpoint
+            name="PaymentWebService"
+            implementation="gov.iti.jets.webService.PaymentWS"
+            url-pattern="/ws/payment"/>
 </endpoints>

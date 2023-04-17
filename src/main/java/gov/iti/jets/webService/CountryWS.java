@@ -19,14 +19,14 @@ public class CountryWS {
     {
         countryService = CountryService.getInstance();
     }
-    @WebResult(name="Countries")
+    @WebResult(name="Country")
     public List<CountryDto> findAllCountries()
     {
         List<CountryDto> countryDtos = countryService.findAll();
         return  countryDtos;
     }
 
-    @WebResult(name="Countries")
+    @WebResult(name="Country")
     public List<CountryDto> getCountriesPage(@WebParam(name="page") int page, @WebParam(name="limit") int limit)
     {
         List<CountryDto> countryDtos = countryService.getPage(page, limit);

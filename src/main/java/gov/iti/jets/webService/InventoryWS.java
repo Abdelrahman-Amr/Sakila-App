@@ -18,13 +18,13 @@ public class InventoryWS {
     {
         inventoryService = InventoryService.getInstance();
     }
-    @WebResult(name="Inventories")
+    @WebResult(name="Inventory")
     public List<InventoryDto> findAllInventories()
     {
         List<InventoryDto> inventoryDtos = inventoryService.findAll();
         return  inventoryDtos;
     }
-    @WebResult(name="Inventories")
+    @WebResult(name="Inventory")
     public List<InventoryDto> getInventoriesPage(@WebParam(name="page") int page, @WebParam(name="limit") int limit)
     {
         List<InventoryDto> inventoryDtos = inventoryService.getPage(page, limit);

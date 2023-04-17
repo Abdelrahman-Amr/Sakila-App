@@ -20,14 +20,14 @@ public class FilmWS {
     {
         filmService = FilmService.getInstance();
     }
-    @WebResult(name="Films")
+    @WebResult(name="Film")
     public List<FilmDto> findAllFilms()
     {
         List<FilmDto> filmDtos = filmService.findAll();
         return  filmDtos;
     }
 
-    @WebResult(name="Films")
+    @WebResult(name="Film")
     public List<FilmDto> getFilmsPage(@WebParam(name="page") int page, @WebParam(name="limit") int limit)
     {
         List<FilmDto> filmDtos = filmService.getPage(page, limit);

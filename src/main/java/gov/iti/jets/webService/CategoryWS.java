@@ -15,13 +15,13 @@ public class CategoryWS {
     {
         categoryService = CategoryService.getInstance();
     }
-    @WebResult(name="categories")
+    @WebResult(name="Category")
     public List<CategoryDto> findAllCategories()
     {
         List<CategoryDto> categoryDtos = categoryService.findAll();
         return  categoryDtos;
     }
-    @WebResult(name="categories")
+    @WebResult(name="Category")
     public List<CategoryDto> getCategoriesPage(@WebParam(name="page") int page, @WebParam(name="limit") int limit)
     {
         List<CategoryDto> categoryDtos = categoryService.getPage(page, limit);

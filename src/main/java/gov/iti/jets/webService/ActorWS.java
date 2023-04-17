@@ -22,14 +22,14 @@ public class ActorWS {
     {
         actorService = ActorService.getInstance();
     }
-    @WebResult(name="Actors")
+    @WebResult(name="Actor")
     public List<ActorDto> findAllActors()
     {
         List<ActorDto> actors = actorService.findAll();
         return  actors;
     }
 
-    @WebResult(name="Actors")
+    @WebResult(name="Actor")
     public List<ActorDto> getActorsPage(@WebParam(name="page") int page, @WebParam(name="limit") int limit)
     {
         List<ActorDto> actors = actorService.getPage(page, limit);

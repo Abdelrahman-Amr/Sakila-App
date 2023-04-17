@@ -16,13 +16,13 @@ public class LanguageWS {
     {
         languageService = LanguageService.getInstance();
     }
-    @WebResult(name="languages")
+    @WebResult(name="language")
     public List<LanguageDto> findAllLanguages()
     {
         List<LanguageDto> languageDtos = languageService.findAll();
         return  languageDtos;
     }
-    @WebResult(name="languages")
+    @WebResult(name="language")
     public List<LanguageDto> getLanguagesPage(@WebParam(name="page") int page, @WebParam(name="limit") int limit)
     {
         List<LanguageDto> languageDtos = languageService.getPage(page, limit);

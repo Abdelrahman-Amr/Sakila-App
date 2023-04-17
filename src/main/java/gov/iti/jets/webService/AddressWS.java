@@ -17,13 +17,13 @@ public class AddressWS {
     {
         addressService = AddressService.getInstance();
     }
-    @WebResult(name="Addresses")
+    @WebResult(name="Address")
     public List<AddressDto> findAllAddresses()
     {
         List<AddressDto> addressDtos = addressService.findAll();
         return  addressDtos;
     }
-    @WebResult(name="Addresses")
+    @WebResult(name="Address")
     public List<AddressDto> getAddressesPage(@WebParam(name="page") int page, @WebParam(name="limit") int limit)
     {
         List<AddressDto> addressDtos = addressService.getPage(page, limit);

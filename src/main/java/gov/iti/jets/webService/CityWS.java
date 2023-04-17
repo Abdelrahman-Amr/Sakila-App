@@ -18,13 +18,13 @@ public class CityWS {
     {
         cityService = CityService.getInstance();
     }
-    @WebResult(name="Cities")
+    @WebResult(name="City")
     public List<CityDto> findAllCities()
     {
         List<CityDto> cityDtos = cityService.findAll();
         return  cityDtos;
     }
-    @WebResult(name="Cities")
+    @WebResult(name="City")
     public List<CityDto> getCitiesPage(@WebParam(name="page") int page, @WebParam(name="limit") int limit)
     {
         List<CityDto> cityDtos = cityService.getPage(page, limit);

@@ -17,13 +17,13 @@ public class CustomerWS {
     {
         customerService = CustomerService.getInstance();
     }
-    @WebResult(name="Customers")
+    @WebResult(name="Customer")
     public List<CustomerDto> findAllCustomers()
     {
         List<CustomerDto> customerDtos = customerService.findAll();
         return  customerDtos;
     }
-    @WebResult(name="Customers")
+    @WebResult(name="Customer")
     public List<CustomerDto> getCustomersPage(@WebParam(name="page") int page, @WebParam(name="limit") int limit)
     {
         List<CustomerDto> customerDtos = customerService.getPage(page, limit);
