@@ -53,4 +53,14 @@
             name="RentalWebService"
             implementation="gov.iti.jets.webService.RentalWS"
             url-pattern="/ws/rental"/>
+
+    <endpoint
+            name="StaffWebService"
+            implementation="gov.iti.jets.webService.StaffWS"
+            url-pattern="/ws/staff"/>
+
+    <endpoint
+            name="StoreWebService"
+            implementation="gov.iti.jets.webService.StoreWS"
+            url-pattern="/ws/store"/>
 </endpoints>

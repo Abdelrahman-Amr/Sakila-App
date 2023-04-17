@@ -9,7 +9,7 @@ public class ManagerDto extends BaseDto {
     private Short staffId;
     private  String firstName;
     private  String lastName;
-    private  byte[] picture;
+//    private  byte[] picture;
     private  String email;
     private  boolean active;
     private  String username;

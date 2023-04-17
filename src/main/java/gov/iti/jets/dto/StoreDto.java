@@ -13,7 +13,4 @@ public class StoreDto extends BaseDto{
 //    private  LocalDateTime lastUpdate;
     private AddressDto addressId;
     private ManagerDto managerStaffId;
-
-
-
 }

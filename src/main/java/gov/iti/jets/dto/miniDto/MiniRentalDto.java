@@ -13,7 +13,7 @@ import java.util.Date;
 public class MiniRentalDto extends BaseDto {
     private  Integer rentalId;
     private Date rentalDate;
-    private  Date returnDate;
+    private Date returnDate;
     private InventoryDto inventoryId;
 
 }

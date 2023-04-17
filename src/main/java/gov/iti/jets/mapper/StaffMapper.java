@@ -27,10 +27,10 @@ public interface StaffMapper  extends BaseMapper<Staff, StaffDto>{
         if ( dto.getLastName() != null ) {
             entity.setLastName( dto.getLastName() );
         }
-        byte[] picture = dto.getPicture();
-        if ( picture != null ) {
-            entity.setPicture( Arrays.copyOf( picture, picture.length ) );
-        }
+//        byte[] picture = dto.getPicture();
+//        if ( picture != null ) {
+//            entity.setPicture( Arrays.copyOf( picture, picture.length ) );
+//        }
         if ( dto.getEmail() != null ) {
             entity.setEmail( dto.getEmail() );
         }

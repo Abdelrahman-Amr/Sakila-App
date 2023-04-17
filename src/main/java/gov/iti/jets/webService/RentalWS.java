@@ -39,8 +39,8 @@ public class RentalWS {
 
     @WebResult(name="rental")
     public RentalDto addRental(@WebParam(name = "rental") RentalDto dto) {
-        RentalDto languageDto = rentalService.add(dto);
-        return languageDto;
+        RentalDto rentalDto = rentalService.add(dto);
+        return rentalDto;
     }
 
     @WebResult(name="rental")
