@@ -2,7 +2,7 @@
 A java soap api using JAX-WS for a DVD rental store website(Sakila).
 
 # API Documentation
-[Sakila Soap API]([https://documenter.getpostman.com/view/17477268/2s93Y2T2qm](https://documenter.getpostman.com/view/17477268/2s93Y3v1JF))
+[Sakila Soap API](https://documenter.getpostman.com/view/17477268/2s93Y3v1JF)
 
 
 # Features
