@@ -1,0 +1,148 @@
+POST http://localhost:9090/sakila-soap/ws/store HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:findAllStores>
+            
+        </jets:findAllStores>
+    </soap:Body>
+</soap:Envelope>
+
+###
+
+POST http://localhost:9090/sakila-soap/ws/store HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:getStoresPage>
+            <page>1</page>
+            <limit>1</limit>
+        </jets:getStoresPage>
+    </soap:Body>
+
+
+###
+
+POST http://localhost:9090/sakila-soap/ws/store HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:findStoreById>
+            <id>7</id>
+        </jets:findStoreById>
+    </soap:Body>
+</soap:Envelope>
+
+###
+POST http://localhost:9090/sakila-soap/ws/store HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:addStore>
+      <store>
+        <lastUpdate>2023-04-17T04:42:59+02:00</lastUpdate>
+        <addressId>
+          <lastUpdate>2014-09-25T22:30:09+03:00</lastUpdate>
+          <address>1411 Lillydale Drive</address>
+          <addressId>4</addressId>
+          <cityId>
+            <lastUpdate>2006-02-15T03:45:25+02:00</lastUpdate>
+            <city>Woodridge</city>
+            <cityId>576</cityId>
+            <countryId>
+              <lastUpdate>2006-02-15T03:44:00+02:00</lastUpdate>
+              <country>Australia</country>
+              <countryId>8</countryId>
+            </countryId>
+          </cityId>
+          <district>QLD</district>
+          <location>AAAAAAEBAAAAWw3kNB8mY0BC1q5kIqI7wA==</location>
+          <phone>6172235589</phone>
+          <postalCode></postalCode>
+        </addressId>
+        <managerStaffId>
+          <lastUpdate>2006-02-15T02:57:16+02:00</lastUpdate>
+          <active>true</active>
+          <email>Mike.Hillyer@sakilastaff.com</email>
+          <firstName>Mike</firstName>
+          <lastName>Hillyer</lastName>
+          <password>8cb2237d0679ca88db6464eac60da96345513964</password>
+          <staffId>4</staffId>
+          <username>Mike</username>
+        </managerStaffId>
+      </store>
+        </jets:addStore>
+    </soap:Body>
+</soap:Envelope>
+###
+POST http://localhost:9090/sakila-soap/ws/store HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:updateStore>
+            <id>7</id>
+         <store>
+        <lastUpdate>2023-04-17T13:14:25.258+02:00</lastUpdate>
+        <addressId>
+          <lastUpdate>2014-09-25T22:30:09+03:00</lastUpdate>
+          <address>1411 Lillydale Drive</address>
+          <addressId>4</addressId>
+          <cityId>
+            <lastUpdate>2006-02-15T03:45:25+02:00</lastUpdate>
+            <city>Woodridge</city>
+            <cityId>576</cityId>
+            <countryId>
+              <lastUpdate>2006-02-15T03:44:00+02:00</lastUpdate>
+              <country>Australia</country>
+              <countryId>8</countryId>
+            </countryId>
+          </cityId>
+          <district>QLD</district>
+          <location>AAAAAAEBAAAAWw3kNB8mY0BC1q5kIqI7wA==</location>
+          <phone>6172235589</phone>
+          <postalCode></postalCode>
+        </addressId>
+        <managerStaffId>
+          <lastUpdate>2006-02-15T02:57:16+02:00</lastUpdate>
+          <active>true</active>
+          <email>Mike.Hillyer@sakilastaff.com</email>
+          <firstName>Mike</firstName>
+          <lastName>Hillyer</lastName>
+          <password>8cb2237d0679ca88db6464eac60da96345513964</password>
+          <staffId>4</staffId>
+          <username>Mike</username>
+        </managerStaffId>
+        <storeId>7</storeId>
+      </store>
+        </jets:updateStore>
+    </soap:Body>
+</soap:Envelope>
+
+###
+POST http://localhost:9090/sakila-soap/ws/store HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:jets="http://webService.jets.iti.gov/">
+    <soap:Body>
+        <jets:deleteStoreById>
+            <id>7</id>
+        </jets:deleteStoreById>
+    </soap:Body>
+</soap:Envelope>

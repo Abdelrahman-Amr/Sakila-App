@@ -1,6 +1,7 @@
 package gov.iti.jets.dto;
 
 import gov.iti.jets.dto.miniDto.MiniStoreDto;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,8 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
+@XmlRootElement
+
 public class StaffDto extends BaseDto {
     private Short staffId;
     private  String firstName;

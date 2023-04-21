@@ -5,11 +5,7 @@ import gov.iti.jets.dto.ActorDto;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebResult;
 import jakarta.jws.WebService;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
-import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import java.util.List;
@@ -58,5 +54,12 @@ public class ActorWS {
     public ActorDto deleteActorById(@WebParam(name = "id")Integer id) {
         ActorDto dto = actorService.deleteById(id);
         return dto;
+    }
+
+    public  List<ActorDto>  findActorsByName(@WebParam(name = "name") String name)
+    {
+        List<ActorDto> actorDtos = actorService.findByName(name);
+        return  actorDtos;
+
     }
 }

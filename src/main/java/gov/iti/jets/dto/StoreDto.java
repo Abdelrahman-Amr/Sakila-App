@@ -1,5 +1,6 @@
 package gov.iti.jets.dto;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,8 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
+@XmlRootElement
+
 public class StoreDto extends BaseDto{
     private  Short storeId;
 //    private  LocalDateTime lastUpdate;

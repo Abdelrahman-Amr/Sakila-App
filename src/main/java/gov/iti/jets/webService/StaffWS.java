@@ -6,7 +6,8 @@ import gov.iti.jets.service.StaffService;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebResult;
 import jakarta.jws.WebService;
-import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import java.util.List;
@@ -19,23 +20,16 @@ public class StaffWS {
         staffService = StaffService.getInstance();
     }
     @WebResult(name="staff")
-    public List<StaffDto> findAllStaff()
+    public List<StaffDto> findAllStaffs()
     {
         List<StaffDto> staffDtos = staffService.findAll();
         return  staffDtos;
     }
     @WebResult(name="staff")
-    public List<StaffDto> getStaffPage(@WebParam(name="page") int page, @WebParam(name="limit") int limit)
+    public List<StaffDto> getStaffsPage(@WebParam(name="page") int page, @WebParam(name="limit") int limit)
     {
         List<StaffDto> staffDtos = staffService.getPage(page, limit);
         return  staffDtos;
-    }
-
-    @WebResult(name="picture")
-    public byte[] getStaffPicture(@WebParam(name = "id") short id)
-    {
-        byte[] picture = staffService.getStaffPicture(id);
-        return picture;
     }
 
     @WebResult(name="staff")
@@ -60,5 +54,31 @@ public class StaffWS {
     public StaffDto deleteStaffById(@WebParam(name = "id") short id) {
         StaffDto dto = staffService.deleteById(id);
         return dto;
+    }
+
+
+    @WebResult(name="picture")
+    public byte[] getStaffPicture(@WebParam(name = "id") short id)
+    {
+        byte[] picture = staffService.getStaffPicture(id);
+        return picture;
+    }
+
+    public  List<StaffDto> findStaffsByName(@WebParam(name = "name") String name)
+    {
+        List<StaffDto> staffDtos = staffService.findByName(name);
+        return staffDtos;
+
+    }
+
+    public String updateStaffPicture(@WebParam(name ="id") short id, byte[] picture)
+    {
+        boolean isUpdated =  staffService.updateStaffPicture(id, picture);
+        if(isUpdated)
+        {
+            return  "Updated Successfully";
+        }
+        return  "Failed to update the picture";
+
     }
 }

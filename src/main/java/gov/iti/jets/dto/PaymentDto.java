@@ -3,6 +3,7 @@ package gov.iti.jets.dto;
 import gov.iti.jets.dto.miniDto.MiniCustomerDto;
 import gov.iti.jets.dto.miniDto.MiniRentalDto;
 import gov.iti.jets.dto.miniDto.MiniStaffDto;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +16,8 @@ import java.util.Date;
  */
 @Data
 @NoArgsConstructor
+@XmlRootElement
+
 public class PaymentDto extends BaseDto {
     private  Short paymentId;
     private  BigDecimal amount;

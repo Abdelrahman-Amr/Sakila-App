@@ -1,6 +1,7 @@
 package gov.iti.jets.dto;
 
 import gov.iti.jets.dto.miniDto.MiniStoreDto;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.util.Date;
  */
 @Data
 @NoArgsConstructor
+@XmlRootElement
 public class CustomerDto extends BaseDto {
     private  Short customerId;
     private  String firstName;

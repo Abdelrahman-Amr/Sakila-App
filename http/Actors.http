@@ -5,9 +5,9 @@ Content-Type: text/xml
     xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
     xmlns:jets="http://webService.jets.iti.gov/">
     <soap:Body>
-        <jets:findAll>
+        <jets:findAllActors>
             
-        </jets:findAll>
+        </jets:findAllActors>
     </soap:Body>
 </soap:Envelope>
 

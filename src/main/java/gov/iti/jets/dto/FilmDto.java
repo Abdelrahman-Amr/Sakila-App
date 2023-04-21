@@ -1,5 +1,6 @@
 package gov.iti.jets.dto;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.util.Date;
  */
 @Data
 @NoArgsConstructor
+@XmlRootElement
 public class FilmDto extends BaseDto {
     private  Short filmId;
     private  String title;

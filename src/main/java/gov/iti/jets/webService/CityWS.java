@@ -8,6 +8,9 @@ import gov.iti.jets.service.CountryService;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebResult;
 import jakarta.jws.WebService;
+import jakarta.ws.rs.DefaultValue;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
@@ -53,5 +56,11 @@ public class CityWS {
     public CityDto deleteCityById(@WebParam(name = "id")short id) {
         CityDto dto = cityService.deleteById(id);
         return dto;
+    }
+
+    public List<CityDto> findCitiesByCountryId(@DefaultValue("1") @QueryParam("countryId") Short countryId)
+    {
+        List<CityDto> cityDtos = cityService.findCitiesByCountryId(countryId);
+        return  cityDtos ;
     }
 }

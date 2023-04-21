@@ -1,5 +1,6 @@
 package gov.iti.jets.persistence.repositoryImpl;
 
+import gov.iti.jets.entity.Actor;
 import gov.iti.jets.entity.Staff;
 import gov.iti.jets.persistence.repository.StaffRepository;
 import gov.iti.jets.util.MyLocal;
@@ -21,6 +22,27 @@ public class StaffRepositoryImpl  extends  BaseRepositoryImpl<Staff, Short> impl
         query.setParameter("id", id);
         List<byte[]> list = query.getResultList();
         return list.get(0);
+    }
+
+    @Override
+    public boolean updateStaffPicture(short id, byte[] picture)
+    {
+        Staff staff = entityManager.find(Staff.class, id);
+        staff.setPicture(picture);
+        if(this.update(staff)!=null)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public List<Staff> findByName(String name)
+    {
+        Query query = entityManager.createQuery("from Staff a where a.firstName ilike '%' || :name || '%' or a.lastName ilike '%' || :name || '%'   ", Actor.class);
+        query.setParameter("name", name);
+        List<Staff> staff = query.getResultList();
+        return staff;
     }
 
 }
