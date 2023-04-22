@@ -20,6 +20,7 @@ import java.util.List;
 @Table(name = "city")
 @Data
 @NoArgsConstructor
+@NamedQuery(name = "City.findCitiesByCountryId", query = "from City c where c.countryId.countryId =:countryId")
 public class City implements BaseEntity{
 
     private static final long serialVersionUID = 1L;

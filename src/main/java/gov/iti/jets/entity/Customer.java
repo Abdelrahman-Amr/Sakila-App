@@ -4,6 +4,7 @@
  */
 package gov.iti.jets.entity;
 
+import gov.iti.jets.entity.listener.EntityListener;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ import java.util.List;
 @Table(name = "customer")
 @Data
 @NoArgsConstructor
+@EntityListeners(EntityListener.class)
 public class Customer implements BaseEntity {
 
     private static final long serialVersionUID = 1L;

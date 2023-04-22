@@ -58,7 +58,8 @@ public class CityWS {
         return dto;
     }
 
-    public List<CityDto> findCitiesByCountryId(@DefaultValue("1") @QueryParam("countryId") Short countryId)
+    @WebResult(name="City")
+    public List<CityDto> findCitiesByCountryId( @WebParam(name = "countryId") Short countryId)
     {
         List<CityDto> cityDtos = cityService.findCitiesByCountryId(countryId);
         return  cityDtos ;

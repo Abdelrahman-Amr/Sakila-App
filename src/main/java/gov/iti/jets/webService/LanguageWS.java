@@ -36,7 +36,7 @@ public class LanguageWS {
     }
 
     @WebResult(name="language")
-    public LanguageDto add(@WebParam(name = "language") LanguageDto dto) {
+    public LanguageDto addLanguage(@WebParam(name = "language") LanguageDto dto) {
         LanguageDto languageDto = languageService.add(dto);
         return languageDto;
     }

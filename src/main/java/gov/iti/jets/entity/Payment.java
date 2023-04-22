@@ -4,6 +4,7 @@
  */
 package gov.iti.jets.entity;
 
+import gov.iti.jets.entity.listener.EntityListener;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ import java.util.Date;
 @Table(name = "payment")
 @NoArgsConstructor
 @Data
+@EntityListeners(EntityListener.class)
 public class Payment implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -28,17 +30,19 @@ public class Payment implements BaseEntity {
     @Basic(optional = false)
     @Column(name = "payment_id")
     private Short paymentId;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "amount")
     private BigDecimal amount;
+
     @Basic(optional = false)
     @Column(name = "payment_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date paymentDate;
+
     @Column(name = "last_update")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
+
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Customer customerId;
