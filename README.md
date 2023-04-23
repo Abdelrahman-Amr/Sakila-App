@@ -141,6 +141,8 @@ A java soap api using JAX-WS for a DVD rental store website(Sakila).
 git clone https://github.com/Abdelrahman-Amr/Sakila-Soap-API.git
 ```
 ### Run the project
+### Navigate to the project folder
+
 ```maven 
 catalina start
 mvn install tomcat7:redeploy
