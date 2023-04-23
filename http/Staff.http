@@ -5,9 +5,9 @@ Content-Type: text/xml
     xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
     xmlns:jets="http://webService.jets.iti.gov/">
     <soap:Body>
-        <jets:findAllStaff>
+        <jets:findAllStaffs>
             
-        </jets:findAllStaff>
+        </jets:findAllStaffs>
     </soap:Body>
 </soap:Envelope>
 
@@ -20,11 +20,12 @@ Content-Type: text/xml
     xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
     xmlns:jets="http://webService.jets.iti.gov/">
     <soap:Body>
-        <jets:getStaffPage>
+        <jets:getStaffsPage>
             <page>1</page>
             <limit>4</limit>
-        </jets:getStaffPage>
+        </jets:getStaffsPage>
     </soap:Body>
+  </soap:Envelope>
 
 ###
 

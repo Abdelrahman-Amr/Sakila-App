@@ -1,5 +1,6 @@
 package gov.iti.jets.webService;
 
+import gov.iti.jets.dto.ActorDto;
 import gov.iti.jets.dto.CityDto;
 import gov.iti.jets.dto.CustomerDto;
 import gov.iti.jets.service.CityService;
@@ -52,6 +53,13 @@ public class CustomerWS {
     public CustomerDto deleteCustomerById(@WebParam(name = "id")short id) {
         CustomerDto dto = customerService.deleteById(id);
         return dto;
+    }
+
+    public  List<CustomerDto>  findCustomersByName(@WebParam(name = "name") String name)
+    {
+        List<CustomerDto> customerDtos = customerService.findByName(name);
+        return  customerDtos;
+
     }
 }
 

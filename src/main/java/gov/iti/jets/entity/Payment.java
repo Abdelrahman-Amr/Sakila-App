@@ -4,7 +4,7 @@
  */
 package gov.iti.jets.entity;
 
-import gov.iti.jets.entity.listener.EntityListener;
+import gov.iti.jets.entity.listener.PaymentListener;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +21,7 @@ import java.util.Date;
 @Table(name = "payment")
 @NoArgsConstructor
 @Data
-@EntityListeners(EntityListener.class)
+@EntityListeners(PaymentListener.class)
 public class Payment implements BaseEntity {
 
     private static final long serialVersionUID = 1L;

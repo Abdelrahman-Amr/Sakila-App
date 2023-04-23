@@ -1,5 +1,6 @@
 package gov.iti.jets.webService;
 
+import gov.iti.jets.dto.CustomerDto;
 import gov.iti.jets.dto.RentalDto;
 import gov.iti.jets.dto.StaffDto;
 import gov.iti.jets.service.StaffService;
@@ -64,6 +65,7 @@ public class StaffWS {
         return picture;
     }
 
+    @WebResult(name = "staff")
     public  List<StaffDto> findStaffsByName(@WebParam(name = "name") String name)
     {
         List<StaffDto> staffDtos = staffService.findByName(name);
@@ -71,7 +73,7 @@ public class StaffWS {
 
     }
 
-    public String updateStaffPicture(@WebParam(name ="id") short id, byte[] picture)
+    public String updateStaffPicture(@WebParam(name ="id") short id, @WebParam(name="picture") byte[] picture)
     {
         boolean isUpdated =  staffService.updateStaffPicture(id, picture);
         if(isUpdated)
@@ -81,4 +83,6 @@ public class StaffWS {
         return  "Failed to update the picture";
 
     }
+
+
 }
