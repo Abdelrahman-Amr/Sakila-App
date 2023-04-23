@@ -87,7 +87,7 @@ A java soap api using JAX-WS for a DVD rental store website(Sakila).
 * Edit store
 * delete store by id 
 
- ### Inventory
+ ### Inventories
 * Find all inventories
 * Find inventories by page
 * Find inventory by id
@@ -130,4 +130,20 @@ A java soap api using JAX-WS for a DVD rental store website(Sakila).
 * MySql
 
 # Installation
+## Make sure that you have installed the follwoing:
+* java 17 (add JAVA_HOME environment variable)
+* tomcat 10 (add CATALINA_HOME environment variable)
+* maven
+* mysql
+* git
+### Clone the project
+```git
+git clone https://github.com/Abdelrahman-Amr/Sakila-Soap-API.git
+```
+### Run the project
+```maven 
+catalina start
+mvn install tomcat7:redeploy
+```
+
 
