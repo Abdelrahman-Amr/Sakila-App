@@ -10,7 +10,7 @@ A java soap api using JAX-WS for a DVD rental store website(Sakila).
 * Find all actors
 * Find actors by page
 * Find actor by id
-* Find actor by name
+* Find actors by name
 * Add a new actor
 * Edit actor
 * delete actor by id 
@@ -54,6 +54,7 @@ A java soap api using JAX-WS for a DVD rental store website(Sakila).
 * Find all cities
 * Find cities by page
 * Find city by id
+* Find cities by country
 * Add a new city
 * Edit city
 * delete city by id 
